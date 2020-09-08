@@ -1,0 +1,27 @@
+{
+  "name": "3d-solar-system",
+  "version": "1.0.0",
+  "description": "Solar system simulator using Three.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-song/3d-solar-system.git"
+  },
+  "author": "dev-song",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dev-song/3d-solar-system/issues"
+  },
+  "homepage": "https://github.com/dev-song/3d-solar-system#readme",
+  "dependencies": {
+    "three": "^0.120.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
