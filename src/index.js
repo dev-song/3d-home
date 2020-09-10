@@ -52,7 +52,7 @@ function revolveMesh(meshGroup, time, speed) {
 function init() {
   // Camera
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, SPACE_RADIUS * 2);
-  camera.position.set(100, 200, 400);
+  camera.position.set(SPACE_RADIUS / 4, SPACE_RADIUS / 3, SPACE_RADIUS / 4);
   camera.lookAt(0, 0, 0);
 
   // Scene
@@ -69,7 +69,7 @@ function init() {
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
   controls.minDistance = 128;
-  controls.maxDistance = SPACE_RADIUS / 2;
+  controls.maxDistance = SPACE_RADIUS * 0.7;
 
   // Planets
   const materialA = new THREE.MeshStandardMaterial({ flatShading: true, color: 'salmon' }),
@@ -81,13 +81,13 @@ function init() {
     geometryB = new THREE.BoxBufferGeometry(12, 12, 12),
     geometryC = new THREE.SphereBufferGeometry(16, 4, 2),
     geometryD = new THREE.SphereBufferGeometry(16, 8, 8),
-    geometryE = new THREE.SphereBufferGeometry(16, 16, 16);
+    geometryE = new THREE.SphereBufferGeometry(16, 12, 12);
 
-  planetA = createPlanet(geometryA, materialA, scene, 1, 80, 40, -20);
-  planetB = createPlanet(geometryB, materialB, scene, 1, 160, 0, 40);
-  planetC = createPlanet(geometryC, materialC, scene, 1, 240, 60, 20);
-  planetD = createPlanet(geometryD, materialD, scene, 1, 320, -40, -60);
-  planetE = createPlanet(geometryE, materialE, scene, 1, 480);
+  planetA = createPlanet(geometryA, materialA, scene, 1.5, -80, -40, -80);
+  planetB = createPlanet(geometryB, materialB, scene, 1.5, 160, 0, 80);
+  planetC = createPlanet(geometryC, materialC, scene, 1.6, -320, -60, -40);
+  planetD = createPlanet(geometryD, materialD, scene, 1.3, 400, -40, 40);
+  planetE = createPlanet(geometryE, materialE, scene, 1.5, -600, 0, -20);
 
   // Background (Texture source: https://imgur.com/niHC9wI)
   const bgTexture = new THREE.TextureLoader().load('textures/stars.jpeg');
@@ -96,7 +96,7 @@ function init() {
   bgSpace = createPlanet(bgGeometry, bgMaterial, scene, 1, 0, 0, 0);
 
   // Light
-  const light = new THREE.PointLight('white', 2, SPACE_RADIUS * 2, 2);
+  const light = new THREE.PointLight('#ccc', 2, SPACE_RADIUS * 2);
   light.position.set(0, 0, 0);
   scene.add(light);
 
