@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-let camera, scene, renderer;
+let BACKGROUND = 'cornsilk';
+
+let scene, camera, renderer;
 let controls;
 
 init();
@@ -13,7 +15,7 @@ function init() {
   camera.lookAt(0, 0, 0);
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color('cornsilk');
+  scene.background = new THREE.Color(BACKGROUND);
 
   const gridHelper = new THREE.GridHelper(1000, 20);
   scene.add(gridHelper);
@@ -29,6 +31,24 @@ function init() {
 
   controls.minDistance = 100;
   controls.maxDistance = 2000;
+
+  const material = new THREE.MeshStandardMaterial({ flatShading: true });
+
+  const geometry = new THREE.SphereGeometry(16, 32, 16);
+  const mesh = new THREE.Mesh(geometry, material);
+  const group = new THREE.Group();
+  group.add(mesh);
+  mesh.position.set(100, 0, 0);
+  scene.add(group);
+
+  setInterval(() => {
+    mesh.rotateY(0.05);
+  }, 100);
+
+  // Light
+  const light = new THREE.PointLight('white', 5);
+  light.position.set(0, 0, 0);
+  scene.add(light);
 }
 
 function animate() {
