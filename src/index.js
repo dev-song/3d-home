@@ -1,13 +1,14 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-let BACKGROUND = 'cornsilk';
+const SPACE_RADIUS = 1024;
+
+const clock = new THREE.Clock();
 
 let scene, camera, renderer;
 let controls;
-const clock = new THREE.Clock();
-
-let planetA, planetB, planetC, planetD, planetE, planetF;
+let planetA, planetB, planetC, planetD, planetE;
+let bgSpace;
 
 init();
 animate();
@@ -38,15 +39,11 @@ function revolveMesh(meshGroup, time, speed) {
 }
 
 function init() {
-  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-  camera.position.set(500, 800, 1300);
+  camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, SPACE_RADIUS * 2);
+  camera.position.set(100, 200, 400);
   camera.lookAt(0, 0, 0);
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(BACKGROUND);
-
-  const gridHelper = new THREE.GridHelper(1000, 20);
-  scene.add(gridHelper);
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -56,9 +53,8 @@ function init() {
   controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
-
-  controls.minDistance = 100;
-  controls.maxDistance = 2000;
+  controls.minDistance = 128;
+  controls.maxDistance = SPACE_RADIUS / 2;
 
   const material = new THREE.MeshStandardMaterial({ flatShading: true });
   const geometryA = new THREE.ConeBufferGeometry(4, 16, 8);
@@ -73,10 +69,20 @@ function init() {
   planetD = createPlanet(geometryD, material, scene, 0.8, 320, -40, -60);
   planetE = createPlanet(geometryE, material, scene, 1.5, 480);
 
+  // Background (Texture source: https://imgur.com/niHC9wI)
+  const bgTexture = new THREE.TextureLoader().load('textures/stars.jpeg');
+  const bgGeometry = new THREE.SphereBufferGeometry(SPACE_RADIUS, 64, 64);
+  const bgMaterial = new THREE.MeshStandardMaterial({ map: bgTexture, side: THREE.BackSide });
+  bgSpace = createPlanet(bgGeometry, bgMaterial, scene, 1, 0, 0, 0);
+
   // Light
-  const light = new THREE.PointLight('white', 5);
+  const light = new THREE.PointLight('white', 5, SPACE_RADIUS * 1.5, 2);
   light.position.set(0, 0, 0);
   scene.add(light);
+
+  // GridHelper
+  const gridHelper = new THREE.GridHelper(1000, 20);
+  scene.add(gridHelper);
 }
 
 function animate() {
@@ -92,8 +98,9 @@ function render() {
   rotateMesh(planetA.mesh, time, 0.3, true);
   rotateMesh(planetB.mesh, time, 0.2, true);
   rotateMesh(planetC.mesh, time, 0.1, true);
-  rotateMesh(planetD.mesh, time, 0.4, false);
+  rotateMesh(planetD.mesh, time, 0.4, true);
   rotateMesh(planetE.mesh, time, 0.2, true);
+  rotateMesh(bgSpace.mesh, time, 0.01);
 
   revolveMesh(planetA.group, time, 0.2);
   revolveMesh(planetB.group, time, 0.1);
