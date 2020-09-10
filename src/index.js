@@ -39,23 +39,28 @@ function revolveMesh(meshGroup, time, speed) {
 }
 
 function init() {
+  // Camera
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, SPACE_RADIUS * 2);
   camera.position.set(100, 200, 400);
   camera.lookAt(0, 0, 0);
 
+  // Scene
   scene = new THREE.Scene();
 
+  // Renderer
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
+  // Controls
   controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
   controls.minDistance = 128;
   controls.maxDistance = SPACE_RADIUS / 2;
 
+  // Planets
   const material = new THREE.MeshStandardMaterial({ flatShading: true });
   const geometryA = new THREE.ConeBufferGeometry(4, 16, 8);
   const geometryB = new THREE.BoxBufferGeometry(8, 8, 8);
@@ -93,15 +98,17 @@ function animate() {
 
 function render() {
   renderer.render(scene, camera);
-
   const time = clock.getElapsedTime();
+
+  // Auto-rotate Meshes
   rotateMesh(planetA.mesh, time, 0.3, true);
   rotateMesh(planetB.mesh, time, 0.2, true);
   rotateMesh(planetC.mesh, time, 0.1, true);
   rotateMesh(planetD.mesh, time, 0.4, true);
   rotateMesh(planetE.mesh, time, 0.2, true);
-  rotateMesh(bgSpace.mesh, time, 0.01);
+  rotateMesh(bgSpace.mesh, time, 0.005);
 
+  // Auto-revolve Meshes
   revolveMesh(planetA.group, time, 0.2);
   revolveMesh(planetB.group, time, 0.1);
   revolveMesh(planetC.group, time, 0.3);
