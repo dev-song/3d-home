@@ -12,7 +12,8 @@ let planetA, planetB, planetC, planetD, planetE, planetF;
 init();
 animate();
 
-function createPlanet(mesh, scene, scale = 1, xPosition = 0, zPosition = 0, yPosition = 0) {
+function createPlanet(geometry, material, scene, scale = 1, xPosition = 0, zPosition = 0, yPosition = 0) {
+  const mesh = new THREE.Mesh(geometry, material);
   mesh.position.set(xPosition, yPosition, zPosition);
   mesh.scale.setScalar(scale);
 
@@ -21,6 +22,19 @@ function createPlanet(mesh, scene, scale = 1, xPosition = 0, zPosition = 0, yPos
   scene.add(group);
 
   return { mesh, group };
+}
+
+function rotateMesh(mesh, time, speed, verticalRotation = false) {
+  mesh.rotation.y = time * speed;
+
+  if (verticalRotation) {
+    mesh.rotation.x = time * speed;
+    mesh.rotation.z = time * speed;
+  }
+}
+
+function revolveMesh(meshGroup, time, speed) {
+  meshGroup.rotation.y = time * speed
 }
 
 function init() {
@@ -47,26 +61,17 @@ function init() {
   controls.maxDistance = 2000;
 
   const material = new THREE.MeshStandardMaterial({ flatShading: true });
+  const geometryA = new THREE.ConeBufferGeometry(4, 16, 8);
+  const geometryB = new THREE.BoxBufferGeometry(8, 8, 8);
+  const geometryC = new THREE.SphereBufferGeometry(16, 4, 2);
+  const geometryD = new THREE.SphereBufferGeometry(16, 8, 8);
+  const geometryE = new THREE.SphereBufferGeometry(16, 8, 8);
 
-  const geometry = new THREE.SphereGeometry(16, 32, 16);
-  planetA = new THREE.Mesh(geometry, material);
-  planetB = new THREE.Mesh(geometry, material);
-  planetC = new THREE.Mesh(geometry, material);
-
-  planetA = createPlanet(planetA, scene, 1, 50);
-  planetB = createPlanet(planetB, scene, 0.8, 200, 100);
-  planetC = createPlanet(planetC, scene, 1.5, 500);
-
-  // const group = new THREE.Group();
-  // group.add(mesh);
-  // mesh.position.set(100, 0, 0);
-  // scene.add(group);
-
-  setInterval(() => {
-    const elapsed = clock.getElapsedTime();
-    planetA.mesh.rotation.y = elapsed * 0.1;
-    planetA.group.rotation.y = elapsed * 0.05;
-  }, 100);
+  planetA = createPlanet(geometryA, material, scene, 1, 80, 40, -20);
+  planetB = createPlanet(geometryB, material, scene, 0.8, 160, 0, 40);
+  planetC = createPlanet(geometryC, material, scene, 1.5, 240, 60, 20);
+  planetD = createPlanet(geometryD, material, scene, 0.8, 320, -40, -60);
+  planetE = createPlanet(geometryE, material, scene, 1.5, 480);
 
   // Light
   const light = new THREE.PointLight('white', 5);
@@ -82,4 +87,17 @@ function animate() {
 
 function render() {
   renderer.render(scene, camera);
+
+  const time = clock.getElapsedTime();
+  rotateMesh(planetA.mesh, time, 0.3, true);
+  rotateMesh(planetB.mesh, time, 0.2, true);
+  rotateMesh(planetC.mesh, time, 0.1, true);
+  rotateMesh(planetD.mesh, time, 0.4, false);
+  rotateMesh(planetE.mesh, time, 0.2, true);
+
+  revolveMesh(planetA.group, time, 0.2);
+  revolveMesh(planetB.group, time, 0.1);
+  revolveMesh(planetC.group, time, 0.3);
+  revolveMesh(planetD.group, time, 0.15);
+  revolveMesh(planetE.group, time, 0.25);
 }
