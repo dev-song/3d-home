@@ -5,9 +5,23 @@ let BACKGROUND = 'cornsilk';
 
 let scene, camera, renderer;
 let controls;
+const clock = new THREE.Clock();
+
+let planetA, planetB, planetC, planetD, planetE, planetF;
 
 init();
 animate();
+
+function createPlanet(mesh, scene, scale = 1, xPosition = 0, zPosition = 0, yPosition = 0) {
+  mesh.position.set(xPosition, yPosition, zPosition);
+  mesh.scale.setScalar(scale);
+
+  const group = new THREE.Group();
+  group.add(mesh);
+  scene.add(group);
+
+  return { mesh, group };
+}
 
 function init() {
   camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
@@ -35,14 +49,23 @@ function init() {
   const material = new THREE.MeshStandardMaterial({ flatShading: true });
 
   const geometry = new THREE.SphereGeometry(16, 32, 16);
-  const mesh = new THREE.Mesh(geometry, material);
-  const group = new THREE.Group();
-  group.add(mesh);
-  mesh.position.set(100, 0, 0);
-  scene.add(group);
+  planetA = new THREE.Mesh(geometry, material);
+  planetB = new THREE.Mesh(geometry, material);
+  planetC = new THREE.Mesh(geometry, material);
+
+  planetA = createPlanet(planetA, scene, 1, 50);
+  planetB = createPlanet(planetB, scene, 0.8, 200, 100);
+  planetC = createPlanet(planetC, scene, 1.5, 500);
+
+  // const group = new THREE.Group();
+  // group.add(mesh);
+  // mesh.position.set(100, 0, 0);
+  // scene.add(group);
 
   setInterval(() => {
-    mesh.rotateY(0.05);
+    const elapsed = clock.getElapsedTime();
+    planetA.mesh.rotation.y = elapsed * 0.1;
+    planetA.group.rotation.y = elapsed * 0.05;
   }, 100);
 
   // Light
