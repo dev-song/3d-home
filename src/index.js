@@ -89,6 +89,8 @@ function init() {
   planetD = createPlanet(geometryD, materialD, scene, 1.3, 400, -40, 40);
   planetE = createPlanet(geometryE, materialE, scene, 1.5, -600, 0, -20);
 
+  scene.addEventListener('click', e => console.log(e));
+
   // Background (Texture source: https://imgur.com/niHC9wI)
   const bgTexture = new THREE.TextureLoader().load('textures/stars.jpeg');
   const bgGeometry = new THREE.SphereBufferGeometry(SPACE_RADIUS, 64, 64);
@@ -103,6 +105,15 @@ function init() {
   // GridHelper
   const gridHelper = new THREE.GridHelper(1000, 20);
   scene.add(gridHelper);
+
+  window.addEventListener('resize', onWindowResize, false);
+}
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function animate() {
