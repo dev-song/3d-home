@@ -1,7 +1,15 @@
+/**** Inspired by Marshal Murphy's 3D solar system
+ * Reference
+ *  Build the Solar System with WebGL & Three.js, by Marshal Murphy (https://medium.com/javascript-in-plain-english/build-the-solar-system-in-the-browser-with-webgl-three-js-5c56b882fc3b)
+ *  Three.js Official Documentation (https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene)
+ *  Three.js example source code - Interactive Cubes (https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_cubes.html) 
+*/
+
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const SPACE_RADIUS = 1024;
+const INTERSECTED_HEX = 0xAAAAAA;
 
 const clock = new THREE.Clock();
 
@@ -19,15 +27,23 @@ const randomSpeed = new Array(5).fill('').map(elm => {
 
   return Math.ceil(random * 100) / 100;
 });
-console.log(randomSpeed);
+
+let raycaster;
+let mouse = new THREE.Vector2();
+let planets, INTERSECTED;
+
+const container = document.createElement('div');
+container.classList.add('space-container');
+document.body.appendChild(container);
 
 init();
 animate();
 
-function createPlanet(geometry, material, scene, scale = 1, xPosition = 0, zPosition = 0, yPosition = 0) {
+function createPlanet(geometry, material, scene, scale = 1, name = '', xPosition = 0, zPosition = 0, yPosition = 0) {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.position.set(xPosition, yPosition, zPosition);
   mesh.scale.setScalar(scale);
+  mesh.name = name;
 
   const group = new THREE.Group();
   group.add(mesh);
@@ -58,11 +74,14 @@ function init() {
   // Scene
   scene = new THREE.Scene();
 
+  // Raycaster
+  raycaster = new THREE.Raycaster();
+
   // Renderer
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+  container.appendChild(renderer.domElement);
 
   // Controls
   controls = new OrbitControls(camera, renderer.domElement);
@@ -83,19 +102,17 @@ function init() {
     geometryD = new THREE.SphereBufferGeometry(16, 8, 8),
     geometryE = new THREE.SphereBufferGeometry(16, 12, 12);
 
-  planetA = createPlanet(geometryA, materialA, scene, 1.5, -80, -40, -80);
-  planetB = createPlanet(geometryB, materialB, scene, 1.5, 160, 0, 80);
-  planetC = createPlanet(geometryC, materialC, scene, 1.6, -320, -60, -40);
-  planetD = createPlanet(geometryD, materialD, scene, 1.3, 400, -40, 40);
-  planetE = createPlanet(geometryE, materialE, scene, 1.5, -600, 0, -20);
-
-  scene.addEventListener('click', e => console.log(e));
+  planetA = createPlanet(geometryA, materialA, scene, 1.5, 'planet', -80, -40, -80);
+  planetB = createPlanet(geometryB, materialB, scene, 1.5, 'planet', 160, 0, 80);
+  planetC = createPlanet(geometryC, materialC, scene, 1.6, 'planet', -320, -60, -40);
+  planetD = createPlanet(geometryD, materialD, scene, 1.3, 'planet', 400, -40, 40);
+  planetE = createPlanet(geometryE, materialE, scene, 1.5, 'planet', -600, 0, -20);
 
   // Background (Texture source: https://imgur.com/niHC9wI)
   const bgTexture = new THREE.TextureLoader().load('textures/stars.jpeg');
   const bgGeometry = new THREE.SphereBufferGeometry(SPACE_RADIUS, 64, 64);
   const bgMaterial = new THREE.MeshStandardMaterial({ map: bgTexture, side: THREE.BackSide });
-  bgSpace = createPlanet(bgGeometry, bgMaterial, scene, 1, 0, 0, 0);
+  bgSpace = createPlanet(bgGeometry, bgMaterial, scene, 1, 'background', 0, 0, 0);
 
   // Light
   const light = new THREE.PointLight('#ccc', 2, SPACE_RADIUS * 2);
@@ -103,10 +120,44 @@ function init() {
   scene.add(light);
 
   // GridHelper
-  const gridHelper = new THREE.GridHelper(1000, 20);
-  scene.add(gridHelper);
+  // const gridHelper = new THREE.GridHelper(1000, 20);
+  // scene.add(gridHelper);
+
+  savePlanetMeshes();
 
   window.addEventListener('resize', onWindowResize, false);
+  document.addEventListener('mousemove', onDocumentMouseMove, false);
+}
+
+function savePlanetMeshes() {
+  planets = scene.children.map(child => child.children[0]).filter(elm => !!elm && elm.name === 'planet');
+  console.log(planets);
+}
+
+function emphasizeIntersected() {
+  raycaster.setFromCamera(mouse, camera);
+
+  const intersects = raycaster.intersectObjects(planets);
+
+  if (intersects.length > 0) {
+    if (INTERSECTED != intersects[0].object) {
+      if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+
+      INTERSECTED = intersects[0].object;
+      INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+      INTERSECTED.material.emissive.setHex(INTERSECTED_HEX);
+    }
+  } else {
+    if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+    INTERSECTED = null;
+  }
+}
+
+function onDocumentMouseMove(e) {
+  e.preventDefault();
+
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
 }
 
 function onWindowResize() {
@@ -123,9 +174,7 @@ function animate() {
 }
 
 function render() {
-  renderer.render(scene, camera);
   const time = clock.getElapsedTime();
-
   // Auto-rotate Meshes
   rotateMesh(planetA.mesh, time, randomSpeed[0], true);
   rotateMesh(planetB.mesh, time, randomSpeed[1], true);
@@ -133,11 +182,14 @@ function render() {
   rotateMesh(planetD.mesh, time, randomSpeed[3], true);
   rotateMesh(planetE.mesh, time, randomSpeed[4], true);
   rotateMesh(bgSpace.mesh, time, 0.005);
-
   // Auto-revolve Meshes
   revolveMesh(planetA.group, time, randomSpeed[0]);
   revolveMesh(planetB.group, time, randomSpeed[1]);
   revolveMesh(planetC.group, time, randomSpeed[2]);
   revolveMesh(planetD.group, time, randomSpeed[3]);
   revolveMesh(planetE.group, time, randomSpeed[4]);
+
+  emphasizeIntersected();
+
+  renderer.render(scene, camera);
 }
