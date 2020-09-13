@@ -7,7 +7,7 @@ function Navigation() {
   return (
     <nav className='navigation'>
       <ul className='nav__container'>
-        {linkList.map(linkName => <li classNmae='nav__link'>{linkName}</li>)}
+        {linkList.map(linkName => <li className='nav__link'>{linkName}</li>)}
       </ul>
     </nav>
   )
