@@ -1,0 +1,22 @@
+.navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.5rem 1rem;
+
+  color: white;
+}
+
+.nav__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0;
+}
+
+.nav__link {
+  list-style: none;
+}
