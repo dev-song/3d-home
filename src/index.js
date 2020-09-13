@@ -1,8 +1,11 @@
-import * as System from './components/3d-system';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
 
-function init() {
-  System.init();
-  System.animate();
-}
-
-init();
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
