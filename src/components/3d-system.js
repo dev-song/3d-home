@@ -36,9 +36,6 @@ const container = document.createElement('div');
 container.classList.add('space-container');
 document.body.appendChild(container);
 
-// init();
-// animate();
-
 function createPlanet(geometry, material, scene, scale = 1, name = '', xPosition = 0, zPosition = 0, yPosition = 0) {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.position.set(xPosition, yPosition, zPosition);
