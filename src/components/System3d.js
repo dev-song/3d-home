@@ -9,12 +9,12 @@
 import React from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import * as SystemLib from './3d-system-lib';
+import * as SystemLib from './System3dLib';
 
 const SPACE_RADIUS = 1024;
 const INTERSECTED_HEX = 0xAAAAAA;
 
-class System extends React.Component {
+class System3d extends React.Component {
   componentDidMount() {
     const clock = new THREE.Clock();
     let scene, camera, renderer;
@@ -162,4 +162,4 @@ class System extends React.Component {
   }
 }
 
-export default System;
+export default System3d;
