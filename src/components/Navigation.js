@@ -1,13 +1,21 @@
 import React from 'react';
-import './styles/navigation.css';
+import './Navigation.css';
 
-function Navigation() {
-  const linkList = ['About', 'Portfolio', 'Contact', 'Guestbook']
+function Navigation(props) {
+  const links = ['About', 'Portfolio', 'Contact', 'Guestbook'];
 
   return (
     <nav className='navigation'>
       <ul className='nav__container'>
-        {linkList.map(linkName => <li className='nav__link'>{linkName}</li>)}
+        {links.map((linkName, index) => (
+          <li
+            className='nav__link'
+            key={index}
+            onClick={props.handleStateChange}
+          >
+            {linkName}
+          </li>
+        ))}
       </ul>
     </nav>
   )
