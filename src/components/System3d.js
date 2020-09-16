@@ -71,11 +71,11 @@ class System3d extends React.Component {
     this.mount.appendChild(renderer.domElement);
 
     //// Controls
-    controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.minDistance = 128;
-    controls.maxDistance = SPACE_RADIUS * 0.7;
+    // controls = new OrbitControls(camera, renderer.domElement);
+    // controls.enableDamping = true;
+    // controls.dampingFactor = 0.05;
+    // controls.minDistance = 128;
+    // controls.maxDistance = SPACE_RADIUS * 0.7;
 
     //// Planets
     const materialA = new THREE.MeshStandardMaterial({ flatShading: true, color: 'salmon' }),
@@ -119,7 +119,7 @@ class System3d extends React.Component {
 
     function animate() {
       requestAnimationFrame(animate);
-      controls.update();
+      // controls.update();
       render();
     }
 
@@ -158,7 +158,12 @@ class System3d extends React.Component {
     }
   }
   render() {
-    return <div className='3d-system__container' ref={ref => (this.mount = ref)} />;
+    return (
+      <div
+        className='3d-system__container'
+        ref={ref => (this.mount = ref)}
+      />
+    );
   }
 }
 
