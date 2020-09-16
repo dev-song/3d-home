@@ -4,23 +4,86 @@ https://answers.ea.com/t5/General-Discussion/Our-single-minded-mission-tracker/t
 https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 */
 
+:root {
+  --box-color-title: #ffffff;
+  --box-color-text: #5caaad;
+  --box-color-background: rgba(0, 0, 0, 0.3);
+  --fadein-duration: 0.4s;
+  --slidein-duration: 0.4s;
+  --slidein-delay-gap: 0.5s;
+}
+
 .description-box {
   position: absolute;
   top: 20%;
   left: 70%;
-  padding: 1rem;
+  transition: all 0.4s linear;
+  border-radius: 0.3rem;
 
-  background: rgba(0, 0, 0, 0.3);
-  color: rgba(255, 255, 255, 0.7);
+  background: var(--box-color-background);
+  color: var(--box-color-text);
+  text-align: left;
 
-  animation-name: unfold;
-  animation-duration: 0.4s;
+  animation-name: fadein;
+  animation-duration: var(--fadein-duration);
   animation-timing-function: linear;
 }
 
-@keyframes unfold {
+.description__title,
+.description__subtitle,
+.description__body {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  opacity: 0;
+
+  animation-name: slidein;
+  animation-duration: var(--slidein-duration);
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.description__title {
+  color: var(--box-color-title);
+
+  animation-delay: calc(var(--fadein-duration) + var(--slidein-delay-gap));
+}
+
+.decorative-line {
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(
+    to right,
+    var(--box-color-background) 5%,
+    var(--box-color-text) 50%,
+    var(--box-color-background) 95%
+  );
+}
+
+.description__subtitle {
+  animation-delay: calc(var(--fadein-duration) + 2 * var(--slidein-delay-gap));
+}
+
+.description__body {
+  animation-delay: calc(var(--fadein-duration) + 3 * var(--slidein-delay-gap));
+}
+
+.fadeout {
+  opacity: 0;
+}
+
+@keyframes fadein {
   0% {
     opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slidein {
+  0% {
+    opacity: 0;
     transform: translateX(-10px);
   }
   100% {
