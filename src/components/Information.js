@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation';
 import DescriptionBox from './DescriptionBox';
+import './Information.css';
 
 class Content {
   constructor(title, subtitle, body) {
