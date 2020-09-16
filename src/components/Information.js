@@ -16,6 +16,7 @@ class Information extends React.Component {
     super();
     this.state = {
       selectedLink: null,
+      isFadingOut: false,
       contentByMenu: {
         About: new Content('About', 'About-sub', 'Body'),
         Portfolio: new Content('Portfolio', 'Portfolio-sub', 'Body'),
@@ -28,12 +29,25 @@ class Information extends React.Component {
   }
 
   handleStateChange(event) {
-    this.setState({ selectedLink: event.target.textContent });
+    const selectedLink = event.target.textContent;
+    const TRANSITION_TIME = 400;  // Should be same as CSS transition time
+    const TIME_GAP = 200;         // Time to initiate displaying next DescriptionBox
+
+    if (this.state.selectedLink) {
+      if (this.state.selectedLink === selectedLink) return;
+      this.setState({ isFadingOut: true });
+
+      setTimeout(() => {
+        this.setState({ selectedLink: null, isFadingOut: false });
+        this.setState({ selectedLink });
+      }, TRANSITION_TIME + TIME_GAP);
+    } else {
+      this.setState({ selectedLink });
+    }
   }
 
   render() {
     const state = this.state;
-    console.log(state.contentByMenu[state.selectedLink]);
 
     return (
       <main role='main'>
@@ -42,6 +56,7 @@ class Information extends React.Component {
           ?
           <DescriptionBox
             content={state.contentByMenu[state.selectedLink]}
+            fadingOut={state.isFadingOut}
           />
           : null
         }
