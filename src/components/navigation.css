@@ -1,3 +1,7 @@
+:root {
+  --link-color-hover: #5caaad;
+}
+
 .navigation {
   position: absolute;
   top: 0;
@@ -11,7 +15,7 @@
 
 .nav__container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 
   padding: 0;
@@ -19,4 +23,15 @@
 
 .nav__link {
   list-style: none;
+  transition: all 0.4s linear;
+
+  font-family: 'Bungee', cursive;
+  font-size: 2rem;
+  line-height: 2rem;
+}
+
+.nav__link:hover {
+  text-shadow: 0 0 0.2rem #fff, 0 0 1rem var(--link-color-hover),
+    0 0 1.5rem var(--link-color-hover), 0 0 2rem var(--link-color-hover),
+    0 0 2.5rem var(--link-color-hover);
 }
