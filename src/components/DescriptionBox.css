@@ -11,29 +11,57 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
   --fadein-duration: 0.4s;
   --slidein-duration: 0.4s;
   --slidein-delay-gap: 0.5s;
+  --html-color-background: #e65127;
+  --css-color-background: #0c73b8;
+  --javascript-color-background: #e7a328;
 }
 
 .description-box {
   position: absolute;
   top: 20%;
-  left: 70%;
+  left: 60%;
+  right: 2rem;
+  max-height: 60%;
+  overflow-y: auto;
   transition: all 0.4s linear;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
 
   background: var(--box-color-background);
+  font-family: 'Iceland', cursive;
   color: var(--box-color-text);
+  font-size: 1.25rem;
   text-align: left;
+  word-wrap: break-word;
 
   animation-name: fadein;
   animation-duration: var(--fadein-duration);
   animation-timing-function: linear;
 }
 
+.description-box::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.description-box::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+
+  background: var(--box-color-text);
+  background-clip: padding-box;
+}
+
+.description-box::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.5rem var(--box-color-text);
+  border-radius: 0.5rem;
+
+  background: var(--box-color-background);
+}
+
 .description__title,
 .description__subtitle,
 .description__body {
   margin: 0;
-  padding: 0.5rem 1rem;
+  padding: 1.5rem;
   opacity: 0;
 
   animation-name: slidein;
@@ -43,7 +71,14 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 }
 
 .description__title {
+  padding-bottom: 0.5rem;
+
+  font-family: 'Bungee', cursive;
   color: var(--box-color-title);
+  text-shadow: 0 0 0.2rem var(--box-color-title);
+  font-size: 2rem;
+  line-height: 2rem;
+  text-align: center;
 
   animation-delay: calc(var(--fadein-duration) + var(--slidein-delay-gap));
 }
@@ -61,11 +96,115 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 }
 
 .description__subtitle {
+  padding-top: 0.5rem;
+
+  font-family: 'Bungee', cursive;
+  text-shadow: 0 0 0.1rem var(--box-color-text);
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  text-align: center;
+
   animation-delay: calc(var(--fadein-duration) + 2 * var(--slidein-delay-gap));
 }
 
 .description__body {
+  padding-top: 0;
+
   animation-delay: calc(var(--fadein-duration) + 3 * var(--slidein-delay-gap));
+}
+
+.portfolio-item {
+  position: relative;
+
+  padding: 0.5rem 0 1.5rem;
+}
+
+.portfolio-item:last-of-type {
+  padding-bottom: 0;
+}
+
+.portfolio-item__title {
+  margin: 0 0 0.5rem;
+
+  font-family: 'Audiowide', cursive;
+  color: var(--box-color-title);
+  text-shadow: 0 0 0.1rem var(--box-color-title);
+  font-size: 1.25rem;
+}
+
+.portfolio-item__subtitle {
+  margin: 0;
+
+  font-family: 'Audiowide', cursive;
+  text-shadow: 0 0 0.1rem var(--box-color-text);
+  font-size: 1rem;
+}
+
+.portfolio-item__description {
+  margin: 0;
+
+  text-shadow: 0 0 0.2rem var(--box-color-text);
+}
+
+.portfolio-item__skills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  padding: 0.5rem;
+}
+
+.portfolio-item__skill {
+  margin: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  opacity: 0.8;
+
+  color: white;
+  text-align: center;
+}
+
+.skill-html {
+  background: var(--html-color-background);
+}
+
+.skill-css {
+  background: var(--css-color-background);
+}
+
+.skill-javascript {
+  background: var(--javascript-color-background);
+}
+
+.portfolio-item__links {
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.portfolio-item__link {
+  all: unset;
+  display: block;
+  margin-left: 0.5rem;
+  transition: all 0.4s linear;
+  cursor: pointer;
+  opacity: 0.9;
+
+  color: white;
+}
+
+.portfolio-item__link:hover {
+  color: var(--box-color-text);
+}
+
+.portfolio-item__link > svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .fadeout {
