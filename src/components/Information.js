@@ -3,6 +3,9 @@ import Navigation from './Navigation';
 import DescriptionBox from './DescriptionBox';
 import './Information.css';
 
+import PORTFOLIO_ITEMS from '../data/portfolio';
+import CONTACT_INFO from '../data/contact';
+
 class Content {
   constructor(title, subtitle, body) {
     this.title = title;
@@ -18,10 +21,10 @@ class Information extends React.Component {
       selectedLink: null,
       isFadingOut: false,
       contentByMenu: {
-        About: new Content('About', 'About-sub', 'Body'),
-        Portfolio: new Content('Portfolio', 'Portfolio-sub', 'Body'),
-        Contact: new Content('Contact', 'Contact-sub', 'Body'),
-        Guestbook: new Content('Guestbook', 'Guestbook-sub', 'Body')
+        About: new Content('About', 'Who Am I', 'Body'),
+        Portfolio: new Content('Portfolio', 'Participated Projects', JSON.stringify(PORTFOLIO_ITEMS)),
+        Contact: new Content('Contact', 'How to Contact Me', JSON.stringify(CONTACT_INFO)),
+        Guestbook: new Content('Guestbook', 'Leave Messages', 'Body')
       }
     };
 
