@@ -4,6 +4,7 @@ import './DescriptionBox.css';
 import About from './About';
 import Portfolio from './Portfolio';
 import Contact from './Contact';
+import Guestbook from './Guestbook';
 
 function DescriptionBox({ content, fadingOut }) {
   const { title, subtitle, body } = content;
@@ -20,7 +21,11 @@ function DescriptionBox({ content, fadingOut }) {
       case 'Contact':
         bodyComponent = <Contact contactInfo={body} />;
         break;
+      case 'Guestbook':
+        bodyComponent = <Guestbook />;
+        break;
       default:
+        console.error('Error: No component is loaded');
     }
 
     return bodyComponent;
