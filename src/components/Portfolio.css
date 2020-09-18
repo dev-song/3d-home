@@ -50,18 +50,6 @@
   text-align: center;
 }
 
-.skill-html {
-  background: var(--html-color-background);
-}
-
-.skill-css {
-  background: var(--css-color-background);
-}
-
-.skill-javascript {
-  background: var(--javascript-color-background);
-}
-
 .portfolio-item__links {
   position: absolute;
   top: 0.5rem;
