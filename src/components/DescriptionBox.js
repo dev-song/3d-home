@@ -1,6 +1,7 @@
 import React from 'react';
 import './DescriptionBox.css';
 
+import About from './About';
 import Portfolio from './Portfolio';
 import Contact from './Contact';
 
@@ -10,6 +11,9 @@ function DescriptionBox({ content, fadingOut }) {
   function renderDescriptionBody(title) {
     let bodyComponent = body;
     switch (title) {
+      case 'About':
+        bodyComponent = <About aboutInfo={body} />
+        break;
       case 'Portfolio':
         bodyComponent = <Portfolio portfolioInfo={body} />;
         break;

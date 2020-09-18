@@ -3,6 +3,7 @@ import Navigation from './Navigation';
 import DescriptionBox from './DescriptionBox';
 import './Information.css';
 
+import ABOUT_INFO from '../data/about';
 import PORTFOLIO_ITEMS from '../data/portfolio';
 import CONTACT_INFO from '../data/contact';
 
@@ -21,7 +22,7 @@ class Information extends React.Component {
       selectedLink: null,
       isFadingOut: false,
       contentByMenu: {
-        About: new Content('About', 'Who Am I', 'Body'),
+        About: new Content('About', 'Who Am I', JSON.stringify(ABOUT_INFO)),
         Portfolio: new Content('Portfolio', 'Participated Projects', JSON.stringify(PORTFOLIO_ITEMS)),
         Contact: new Content('Contact', 'How to Contact Me', JSON.stringify(CONTACT_INFO)),
         Guestbook: new Content('Guestbook', 'Leave Messages', 'Body')
