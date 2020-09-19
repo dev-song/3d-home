@@ -70,6 +70,8 @@ class Guestbook extends React.Component {
   }
 
   render() {
+    const state = this.state;
+
     return (
       <div className='guestbook'>
         <form className='guestbook-form' onSubmit={this.handleGuestbookSubmit}>
@@ -79,7 +81,27 @@ class Guestbook extends React.Component {
           <input className='guestbook-form__submit' type='submit' value='Register' />
         </form>
         <div className='guestbook-list'>
+          {
+            state.guestbook
+              ?
+              state.guestbook.map((guestbookItem, itemIndex) => {
+                const { name, password, message, regTime } = guestbookItem.data;
+                const date = new Date(regTime);
+                const dateStr = `
+                  ${date.getFullYear()}/${date.getMonth()}/${date.getDate()} 
+                  ${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}
+                `;
 
+                return (
+                  <div className='guestbook-item' key={itemIndex} data-key={guestbookItem.key}>
+                    <h4 className='guestbook-item__user'>{name}</h4>
+                    <p className='guestbook-item__message'>{message}</p>
+                    <p className='guestbook-item__registration-time'>{dateStr}</p>
+                  </div>
+                )
+              })
+              : null
+          }
         </div>
       </div>
     )
