@@ -73,13 +73,14 @@ class Information extends React.Component {
     return (
       <main role='main'>
         <Navigation handleStateChange={this.handleStateChange} />
-        {state.selectedLink
-          ?
-          <DescriptionBox
-            content={state.contentByMenu[state.selectedLink]}
-            fadingOut={state.isFadingOut}
-          />
-          : null
+        {
+          state.selectedLink
+            ?
+            <DescriptionBox
+              content={state.contentByMenu[state.selectedLink]}
+              fadingOut={state.isFadingOut}
+            />
+            : null
         }
       </main>
     )
