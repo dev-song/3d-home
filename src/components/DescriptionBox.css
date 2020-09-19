@@ -140,7 +140,7 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 }
 
 .description__body {
-  padding-top: 0;
+  padding: 0 0.5rem 1.5rem;
 
   animation-delay: calc(var(--fadein-duration) + 3 * var(--slidein-delay-gap));
 }

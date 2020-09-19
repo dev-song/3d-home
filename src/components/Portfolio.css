@@ -1,11 +1,18 @@
 .portfolio-item {
   position: relative;
 
-  padding: 0.5rem 0 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s linear;
+  border-radius: 0.5rem;
 }
 
 .portfolio-item:last-of-type {
-  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.portfolio-item:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .portfolio-item__title {
@@ -53,7 +60,7 @@
 .portfolio-item__links {
   position: absolute;
   top: 0.5rem;
-  right: 0;
+  right: 1rem;
 
   display: flex;
   justify-content: space-between;
