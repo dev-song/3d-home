@@ -1,4 +1,7 @@
 import React from 'react';
+import { initializeApp } from 'firebase/app';
+import 'firebase/database';
+
 import Navigation from './Navigation';
 import DescriptionBox from './DescriptionBox';
 import './Information.css';
@@ -48,6 +51,20 @@ class Information extends React.Component {
     } else {
       this.setState({ selectedLink });
     }
+  }
+
+  componentDidMount() {
+    const firebaseConfig = {
+      apiKey: "AIzaSyBK8K7qYrjLgRHUIBafGSENfMhl0FpdeWE",
+      authDomain: "home-guestbook.firebaseapp.com",
+      databaseURL: "https://home-guestbook.firebaseio.com",
+      projectId: "home-guestbook",
+      storageBucket: "home-guestbook.appspot.com",
+      messagingSenderId: "142799144544",
+      appId: "1:142799144544:web:001250f60df6f2b396a505",
+      measurementId: "G-67LGRCK27G"
+    };
+    initializeApp(firebaseConfig);
   }
 
   render() {
