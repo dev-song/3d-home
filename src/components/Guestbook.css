@@ -1,0 +1,60 @@
+.guestbook {
+}
+
+.guestbook-form {
+  padding: 0 1rem 1rem;
+}
+
+.guestbook-form > input {
+  all: unset;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem;
+  border-bottom: 1px solid var(--box-color-text);
+}
+
+.guestbook-form__submit {
+  all: unset;
+}
+
+.guestbook-list {
+}
+
+.guestbook-item {
+  position: relative;
+
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s linear;
+  border-radius: 0.5rem;
+}
+
+.guestbook-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.guestbook-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.guestbook-item__message {
+  margin: 0;
+}
+
+.guestbook-item__user {
+  margin: 0;
+
+  text-align: right;
+}
+
+.guestbook-item__registration-time {
+  margin: 0;
+
+  text-align: right;
+}
+
+.registration-time__date {
+  margin-right: 0.5rem;
+}
