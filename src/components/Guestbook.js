@@ -36,6 +36,7 @@ class Guestbook extends React.Component {
         }
         guestbook.push(guestbookItem);
       });
+      guestbook.sort((a, b) => b.data.regTime - a.data.regTime);
 
       this.setState({ guestbook: guestbook });
     });
