@@ -6,6 +6,7 @@
 import React from 'react';
 import { database } from 'firebase/app';
 import 'firebase/database';
+import './Guestbook.css';
 
 const TARGET_DB = 'guestbook';
 
@@ -63,6 +64,10 @@ class Guestbook extends React.Component {
       message: event.target.querySelector('#message').value
     }
 
+    event.target.querySelector('#name').value = '';
+    event.target.querySelector('#password').value = '';
+    event.target.querySelector('#message').value = '';
+
     this.postGuestbookData(guestbookData, TARGET_DB);
   }
 
@@ -76,10 +81,10 @@ class Guestbook extends React.Component {
     return (
       <div className='guestbook'>
         <form className='guestbook-form' onSubmit={this.handleGuestbookSubmit}>
-          <input className='guestbook-form__name' id='name' type='text' placeholder='Name' />
+          <input className='guestbook-form__name' id='name' type='text' placeholder='Name' required />
           <input className='guestbook-form__password' id='password' type='password' placeholder='Password' />
-          <input className='guestbook-form__message' id='message' type='text' placeholder='Message' />
-          <input className='guestbook-form__submit' type='submit' value='Register' />
+          <input className='guestbook-form__message' id='message' type='text' placeholder='Message' required />
+          <button className='guestbook-form__submit'>Register</button>
         </form>
         <div className='guestbook-list'>
           {
@@ -89,15 +94,23 @@ class Guestbook extends React.Component {
                 const { name, password, message, regTime } = guestbookItem.data;
                 const date = new Date(regTime);
                 const dateStr = `
-                  ${date.getFullYear()}/${date.getMonth()}/${date.getDate()} 
-                  ${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}
+                  ${`${date.getFullYear()}`.substring(2)}
+                  /${date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth()}
+                  /${date.getDate() < 10 ? `0${date.getDate()}` : date.getMonth()}
+                `;
+                const timeStr = `
+                  ${date.getHours()}
+                  :${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}
                 `;
 
                 return (
                   <div className='guestbook-item' key={itemIndex} data-key={guestbookItem.key}>
-                    <h4 className='guestbook-item__user'>{name}</h4>
                     <p className='guestbook-item__message'>{message}</p>
-                    <p className='guestbook-item__registration-time'>{dateStr}</p>
+                    <p className='guestbook-item__registration-time'>
+                      <span className='registration-time__date'>{dateStr}</span>
+                      <span className='registration-time__time'>{timeStr}</span>
+                    </p>
+                    <p className='guestbook-item__user'>by {name}</p>
                   </div>
                 )
               })
