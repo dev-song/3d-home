@@ -1,8 +1,7 @@
-.guestbook {
-}
-
 .guestbook-form {
   padding: 0 1rem 1rem;
+
+  text-align: right;
 }
 
 .guestbook-form > input {
@@ -13,13 +12,35 @@
   margin-bottom: 0.5rem;
   padding: 0.3rem;
   border-bottom: 1px solid var(--box-color-text);
+
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.guestbook-form > input::placeholder {
+  font-family: 'Iceland', cursive;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .guestbook-form__submit {
   all: unset;
+  padding: 0.2rem 0.5rem;
+  border: 2px solid var(--box-color-text);
+  border-radius: 0.5rem;
+  transition: all 0.3s linear;
+
+  color: var(--box-color-title);
+}
+
+.guestbook-form__submit:hover {
+  background: var(--box-color-text);
 }
 
 .guestbook-list {
+  border-top: 2px dotted var(--box-color-text);
+  padding-top: 0.5rem;
 }
 
 .guestbook-item {
@@ -41,20 +62,45 @@
 
 .guestbook-item__message {
   margin: 0;
+
+  font-size: 1.2rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--box-color-title);
 }
 
 .guestbook-item__user {
   margin: 0;
 
+  font-size: 1rem;
   text-align: right;
 }
 
-.guestbook-item__registration-time {
+.guestbook-item__registration-info {
   margin: 0;
 
+  font-size: 1.2rem;
   text-align: right;
 }
 
-.registration-time__date {
+.registration-info__user {
   margin-right: 0.5rem;
+
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1rem;
+  color: var(--box-color-title);
+}
+
+.registration-info__user::before {
+  content: '| ';
+  color: var(--box-color-text);
+}
+
+.registration-info__time::before {
+  content: 'at ';
+  font-weight: normal;
+}
+
+.registration-info__time::after {
+  content: ', ';
+  font-weight: normal;
 }
