@@ -28,7 +28,7 @@ class Information extends React.Component {
         About: new Content('About', 'Who Am I', JSON.stringify(ABOUT_INFO)),
         Portfolio: new Content('Portfolio', 'Participated Projects', JSON.stringify(PORTFOLIO_ITEMS)),
         Contact: new Content('Contact', 'How to Contact Me', JSON.stringify(CONTACT_INFO)),
-        Guestbook: new Content('Guestbook', 'Leave Messages')
+        Guestbook: new Content('Guestbook', 'Leave A Message')
       }
     };
 
