@@ -64,11 +64,27 @@ class Guestbook extends React.Component {
       message: event.target.querySelector('#message').value
     }
 
+    if (!this.validateSubmit(guestbookData)) {
+      alert('You have to enter the form with the proper length of characters');
+      return;
+    }
+
     event.target.querySelector('#name').value = '';
     event.target.querySelector('#password').value = '';
     event.target.querySelector('#message').value = '';
 
     this.postGuestbookData(guestbookData, TARGET_DB);
+  }
+
+  validateSubmit({ name, password, message }) {
+    const isNameLengthProper = name.length <= 12 && name.length >= 1;
+    const isPasswordLengthProper = password.length === 4;
+    const isMessageLengthProper = message.length <= 200 && message.length >= 1;
+
+    if (!isNameLengthProper || !isPasswordLengthProper || !isMessageLengthProper) {
+      return false;
+    }
+    return true;
   }
 
   componentDidMount() {
@@ -81,9 +97,9 @@ class Guestbook extends React.Component {
     return (
       <div className='guestbook'>
         <form className='guestbook-form' onSubmit={this.handleGuestbookSubmit}>
-          <input className='guestbook-form__name' id='name' type='text' placeholder='Name' required />
-          <input className='guestbook-form__password' id='password' type='password' placeholder='Password' />
-          <input className='guestbook-form__message' id='message' type='text' placeholder='Message' required />
+          <input className='guestbook-form__name' id='name' type='text' placeholder='Name (12 characters max)' minlength='1' maxlength='12' />
+          <input className='guestbook-form__password' id='password' type='password' minlength='4' maxlength='4' placeholder='Password (4 characters)' />
+          <input className='guestbook-form__message' id='message' type='text' placeholder='Message (200 characters max)' minlength='1' maxlength='200' />
           <button className='guestbook-form__submit'>Register</button>
         </form>
         <div className='guestbook-list'>
@@ -95,22 +111,22 @@ class Guestbook extends React.Component {
                 const date = new Date(regTime);
                 const dateStr = `
                   ${`${date.getFullYear()}`.substring(2)}
-                  /${date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth()}
-                  /${date.getDate() < 10 ? `0${date.getDate()}` : date.getMonth()}
+                  /${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}
+                  /${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}
                 `;
                 const timeStr = `
-                  ${date.getHours()}
+                  ${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()}
                   :${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}
                 `;
 
                 return (
                   <div className='guestbook-item' key={itemIndex} data-key={guestbookItem.key}>
                     <p className='guestbook-item__message'>{message}</p>
-                    <p className='guestbook-item__registration-time'>
-                      <span className='registration-time__date'>{dateStr}</span>
-                      <span className='registration-time__time'>{timeStr}</span>
+                    <p className='guestbook-item__registration-info'>
+                      <span className='registration-info__user'>{name}</span>
+                      <span className='registration-info__time'>{timeStr}</span>
+                      <span className='registration-info__date'>{dateStr}</span>
                     </p>
-                    <p className='guestbook-item__user'>by {name}</p>
                   </div>
                 )
               })
