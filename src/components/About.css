@@ -1,0 +1,38 @@
+.about {
+  padding: 0 1rem 1rem;
+}
+
+.about__username {
+  margin: 0;
+
+  font-size: 2rem;
+}
+
+.about__status,
+.about__intro {
+  margin: 0 0 0.5rem;
+
+  font-size: 1.5rem;
+}
+
+.about__skills--title {
+  margin: 1rem 0 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 2px solid var(--box-color-text);
+
+  text-align: center;
+  font-size: 2rem;
+}
+
+.about__skills > .about__skill {
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.5rem;
+
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.about__skill:last-of-type {
+  margin: 0;
+}
