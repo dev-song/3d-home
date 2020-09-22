@@ -15,6 +15,7 @@ function About({ aboutInfo }) {
           const { name, score, grade } = skillObj;
           return (
             <div key={skillIndex} className={`about__skill skill-${name.toLowerCase()}`}>
+              <div className={`skill-${name.toLowerCase()}__background`}></div>
               {name}: {score}, {grade}
             </div>
           )
