@@ -1,5 +1,5 @@
 import React from 'react';
-import './Navigation.css';
+import './navigation.css';
 
 function Navigation(props) {
   const links = ['About', 'Portfolio', 'Contact', 'Guestbook'];
