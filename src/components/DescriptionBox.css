@@ -50,13 +50,14 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 
 .description-box {
   position: absolute;
-  top: 20%;
-  left: 60%;
-  right: 2rem;
-  max-height: 60%;
+  top: 20vh;
+  left: 60vw;
+  right: 5vw;
+  max-height: 60vh;
   overflow-y: auto;
   transition: all 0.4s linear;
   border-radius: 0.5rem;
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.4);
 
   background: var(--box-color-background);
   font-family: 'Iceland', cursive;
@@ -166,5 +167,31 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .description-box {
+    left: 5vw;
+    right: 5vw;
+    max-height: calc(80vh - 5vw);
+  }
+}
+
+@media (max-width: 480px) {
+  .description-box {
+    font-size: 1.2rem;
+  }
+
+  .description__title {
+    padding-top: 1rem;
+
+    font-size: 1.5rem;
+  }
+
+  .description__subtitle {
+    padding-bottom: 1rem;
+
+    font-size: 1.2rem;
   }
 }

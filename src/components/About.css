@@ -36,3 +36,26 @@
 .about__skill:last-of-type {
   margin: 0;
 }
+
+@media (max-width: 480px) {
+  .about {
+    padding: 0.5rem 0.5rem 1rem;
+  }
+
+  .about__username {
+    font-size: 1.5rem;
+  }
+
+  .about__status,
+  .about__intro {
+    font-size: 1.2rem;
+  }
+
+  .about__skills--title {
+    font-size: 1.5rem;
+  }
+
+  .about__skills > .about__skill {
+    font-size: 1.25rem;
+  }
+}

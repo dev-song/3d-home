@@ -104,3 +104,28 @@
   content: ', ';
   font-weight: normal;
 }
+
+@media (max-width: 480px) {
+  .guestbook-form {
+    padding: 0 0.5rem 1rem;
+  }
+
+  .guestbook-form > input::placeholder {
+    font-size: 1.1rem;
+  }
+
+  .guestbook-item__message {
+    font-size: 1rem;
+  }
+
+  .guestbook-item__registration-info {
+    font-size: 1rem;
+  }
+
+  .registration-info__user {
+    display: block;
+    margin-right: 0;
+
+    font-size: 0.8rem;
+  }
+}

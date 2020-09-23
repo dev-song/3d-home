@@ -35,3 +35,33 @@
     0 0 1.5rem var(--link-color-hover), 0 0 2rem var(--link-color-hover),
     0 0 2.5rem var(--link-color-hover);
 }
+
+@media (max-width: 768px) {
+  .navigation {
+    padding-top: 1rem;
+  }
+
+  .nav__container {
+    flex-wrap: wrap;
+  }
+
+  .nav__link {
+    width: 50%;
+    margin-bottom: 1.5rem;
+  }
+
+  .nav__link:nth-of-type(n + 3):nth-of-type(-n + 4) {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav__container {
+    margin: 0;
+  }
+
+  .nav__link {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+}

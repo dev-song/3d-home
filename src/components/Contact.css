@@ -20,6 +20,10 @@
   color: white;
 }
 
+.contact-info__github {
+  margin: 0;
+}
+
 .contact-info__blog > a,
 .contact-info__github > a {
   all: unset;
@@ -32,4 +36,22 @@
 .contact-info__blog > a:hover,
 .contact-info__github > a:hover {
   color: var(--box-color-text);
+}
+
+@media (max-width: 480px) {
+  .contact-info {
+    padding: 0.5rem 0.5rem 1rem;
+  }
+
+  .contact-info__email--label,
+  .contact-info__blog--label,
+  .contact-info__github--label {
+    font-size: 1.5rem;
+  }
+
+  .contact-info__email,
+  .contact-info__blog,
+  .contact-info__github {
+    font-size: 1.2rem;
+  }
 }
