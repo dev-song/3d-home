@@ -97,9 +97,9 @@ class Guestbook extends React.Component {
     return (
       <div className='guestbook'>
         <form className='guestbook-form' onSubmit={this.handleGuestbookSubmit}>
-          <input className='guestbook-form__name' id='name' type='text' placeholder='Name (12 characters max)' minlength='1' maxlength='12' />
-          <input className='guestbook-form__password' id='password' type='password' minlength='4' maxlength='4' placeholder='Password (4 characters)' />
-          <input className='guestbook-form__message' id='message' type='text' placeholder='Message (200 characters max)' minlength='1' maxlength='200' />
+          <input className='guestbook-form__name' id='name' type='text' placeholder='Name (12 characters max)' minLength='1' maxLength='12' />
+          <input className='guestbook-form__password' id='password' type='password' minLength='4' maxLength='4' placeholder='Password (4 characters)' />
+          <input className='guestbook-form__message' id='message' type='text' placeholder='Message (200 characters max)' minLength='1' maxLength='200' />
           <button className='guestbook-form__submit'>Register</button>
         </form>
         <div className='guestbook-list'>
