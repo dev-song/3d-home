@@ -71,11 +71,11 @@ class System3d extends React.Component {
     this.mount.appendChild(renderer.domElement);
 
     //// Controls
-    // controls = new OrbitControls(camera, renderer.domElement);
-    // controls.enableDamping = true;
-    // controls.dampingFactor = 0.05;
-    // controls.minDistance = 128;
-    // controls.maxDistance = SPACE_RADIUS * 0.7;
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.minDistance = 128;
+    controls.maxDistance = SPACE_RADIUS * 0.7;
 
     //// Planets
     const materialA = new THREE.MeshStandardMaterial({ flatShading: true, color: 'salmon' }),
@@ -97,7 +97,7 @@ class System3d extends React.Component {
     targetPlanets = SystemLib.savePlanetMeshes(scene);
 
     //// Background (Texture source: https://imgur.com/niHC9wI)
-    const bgTexture = new THREE.TextureLoader().load('textures/stars.jpeg');
+    const bgTexture = new THREE.TextureLoader().load('./3d-home/textures/stars.jpeg');
     const bgGeometry = new THREE.SphereBufferGeometry(SPACE_RADIUS, 64, 64);
     const bgMaterial = new THREE.MeshStandardMaterial({ map: bgTexture, side: THREE.BackSide });
     bgSpace = SystemLib.createPlanet(bgGeometry, bgMaterial, scene, 1, 'background', 0, 0, 0);
@@ -119,7 +119,7 @@ class System3d extends React.Component {
 
     function animate() {
       requestAnimationFrame(animate);
-      // controls.update();
+      controls.update();
       render();
     }
 
@@ -160,8 +160,9 @@ class System3d extends React.Component {
   render() {
     return (
       <div
-        className='3d-system__container'
+        className='system__container'
         ref={ref => (this.mount = ref)}
+        style={{ height: window.innerHeight }}
       />
     );
   }
