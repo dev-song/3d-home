@@ -1,7 +1,7 @@
 import React from 'react';
 import './navigation.css';
 
-function Navigation(props) {
+function Navigation({ handleStateChange }) {
   const links = ['About', 'Portfolio', 'Contact', 'Guestbook'];
 
   return (
@@ -11,7 +11,7 @@ function Navigation(props) {
           <li
             className='nav__link'
             key={index}
-            onClick={props.handleStateChange}
+            onClick={handleStateChange}
           >
             {linkName}
           </li>
