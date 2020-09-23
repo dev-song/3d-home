@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTimesCircle } from 'react-icons/fa';
 import './DescriptionBox.css';
 
 import About from './About';
@@ -6,7 +7,7 @@ import Portfolio from './Portfolio';
 import Contact from './Contact';
 import Guestbook from './Guestbook';
 
-function DescriptionBox({ content, fadingOut }) {
+function DescriptionBox({ content, fadingOut, handleDeleteButton }) {
   const { title, subtitle, body } = content;
 
   function renderDescriptionBody(title) {
@@ -39,6 +40,9 @@ function DescriptionBox({ content, fadingOut }) {
       <div className='description__body'>
         {renderDescriptionBody(title)}
       </div>
+      <button type='button' className='description__close-btn' onClick={handleDeleteButton}>
+        <FaTimesCircle />
+      </button>
     </article>
   )
 }

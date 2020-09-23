@@ -33,6 +33,7 @@ class Information extends React.Component {
     };
 
     this.handleStateChange = this.handleStateChange.bind(this);
+    this.handleDeleteButton = this.handleDeleteButton.bind(this);
   }
 
   handleStateChange(event) {
@@ -51,6 +52,17 @@ class Information extends React.Component {
     } else {
       this.setState({ selectedLink });
     }
+  }
+
+  handleDeleteButton() {
+    const TRANSITION_TIME = 400;
+    const TIME_GAP = 200;
+
+    this.setState({ isFadingOut: true });
+
+    setTimeout(() => {
+      this.setState({ selectedLink: null, isFadingOut: false });
+    }, TRANSITION_TIME + TIME_GAP);
   }
 
   componentDidMount() {
@@ -79,6 +91,7 @@ class Information extends React.Component {
             <DescriptionBox
               content={state.contentByMenu[state.selectedLink]}
               fadingOut={state.isFadingOut}
+              handleDeleteButton={this.handleDeleteButton}
             />
             : null
         }
