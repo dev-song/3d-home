@@ -97,7 +97,7 @@ class System3d extends React.Component {
     targetPlanets = SystemLib.savePlanetMeshes(scene);
 
     //// Background (Texture source: https://imgur.com/niHC9wI)
-    const bgTexture = new THREE.TextureLoader().load('./3d-home/textures/stars.jpeg');
+    const bgTexture = new THREE.TextureLoader().load('./textures/stars.jpeg');
     const bgGeometry = new THREE.SphereBufferGeometry(SPACE_RADIUS, 64, 64);
     const bgMaterial = new THREE.MeshStandardMaterial({ map: bgTexture, side: THREE.BackSide });
     bgSpace = SystemLib.createPlanet(bgGeometry, bgMaterial, scene, 1, 'background', 0, 0, 0);
