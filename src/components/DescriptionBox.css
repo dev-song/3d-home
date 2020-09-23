@@ -146,6 +146,28 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
   animation-delay: calc(var(--fadein-duration) + 3 * var(--slidein-delay-gap));
 }
 
+.description__close-btn {
+  all: unset;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  padding: 0.1rem;
+  transition: all 0.4s linear;
+  cursor: pointer;
+
+  color: var(--box-color-title);
+}
+
+.description__close-btn:hover {
+  color: var(--box-color-text);
+}
+
+.description__close-btn > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .fadeout {
   opacity: 0;
 }
