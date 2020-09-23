@@ -14,14 +14,16 @@ function About({ aboutInfo }) {
         {skills.map((skillObj, skillIndex) => {
           const { name, score, grade } = skillObj;
           return (
-            <div key={skillIndex} className={`about__skill skill-${name.toLowerCase()}`}>
-              <div className={`skill-${name.toLowerCase()}__background`}></div>
-              {name}: {score}, {grade}
+            <div key={skillIndex} className={'about__skill'}>
+              <div
+                className={`skill-${name.toLowerCase()} skill-background`} style={{ width: `${score}%` }}>
+              </div>
+              {name}: {score}pt, {grade}
             </div>
           )
         })}
       </div>
-    </div>
+    </div >
   )
 }
 
