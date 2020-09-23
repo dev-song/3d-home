@@ -1,5 +1,5 @@
 .about {
-  padding: 0 1rem 1rem;
+  padding: 0 1rem;
 }
 
 .about__username {
@@ -25,21 +25,44 @@
 }
 
 .about__skills > .about__skill {
+  position: relative;
+
   margin-bottom: 0.5rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.25rem 0.5rem;
 
   border-radius: 0.5rem;
   font-size: 1.5rem;
   color: white;
 }
 
+.skill-background {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 2rem;
+  border-radius: 0.25rem;
+  opacity: 0.8;
+}
+
 .about__skill:last-of-type {
   margin: 0;
 }
 
+@media (max-width: 960px) {
+  .about__skills > .about__skill {
+    font-size: 1.2rem;
+  }
+
+  .skill-background {
+    height: 1.7rem;
+  }
+}
+
 @media (max-width: 480px) {
   .about {
-    padding: 0.5rem 0.5rem 1rem;
+    padding: 0.5rem 0.5rem 0;
   }
 
   .about__username {
@@ -53,9 +76,5 @@
 
   .about__skills--title {
     font-size: 1.5rem;
-  }
-
-  .about__skills > .about__skill {
-    font-size: 1.25rem;
   }
 }

@@ -1,5 +1,5 @@
 .contact-info {
-  padding: 0 1rem 1rem;
+  padding: 0 1rem;
 }
 
 .contact-info__email--label,
@@ -40,7 +40,7 @@
 
 @media (max-width: 480px) {
   .contact-info {
-    padding: 0.5rem 0.5rem 1rem;
+    padding: 0.5rem 0.5rem 0;
   }
 
   .contact-info__email--label,
