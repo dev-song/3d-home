@@ -11,6 +11,14 @@ class PortfolioItem {
 
 const PORTFOLIO_ITEMS = [
   new PortfolioItem(
+    'Revolving Objects',
+    'Webpage',
+    'Homepage displaying revolving objects using React, Three.js',
+    ['CSS', 'JavaScript', 'React', 'ThreeJS'],
+    'https://dev-song.github.io/3d-home/',
+    'https://github.com/dev-song/3d-home'
+  ),
+  new PortfolioItem(
     'Uprise',
     'To-do List',
     'The web to-do list app using localStorage supporting a clock, multi-language (EN/KO), current weather at the user location with a random background image',
