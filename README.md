@@ -8,7 +8,7 @@
 - Contact section
 - Guestbook section
 
-This homepage is also made of following skills:
+This homepage is also made with following skills:
 
 - HTML/CSS
 - JavaScript
