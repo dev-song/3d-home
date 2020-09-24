@@ -16,6 +16,7 @@
 }
 
 .portfolio-item__title {
+  width: calc(100% - 4.5rem);
   margin: 0 0 0.5rem;
 
   font-family: 'Audiowide', cursive;
@@ -51,10 +52,15 @@
   margin: 0.3rem;
   padding: 0.2rem 0.5rem;
   border-radius: 0.25rem;
+  transition: all 0.4s linear;
   opacity: 0.8;
 
   color: white;
   text-align: center;
+}
+
+.portfolio-item__skill:hover {
+  opacity: 1;
 }
 
 .portfolio-item__links {
@@ -93,6 +99,8 @@
   }
 
   .portfolio-item__title {
+    width: calc(100% - 4rem);
+
     font-size: 1.1rem;
   }
 
