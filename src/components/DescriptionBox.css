@@ -18,6 +18,7 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
   --nodejs-color-background: #739d69;
   --expressjs-color-background: #353535;
   --mysql-color-background: #32738c;
+  --threejs-color-background: #049ef4;
 }
 
 .skill-html {
@@ -46,6 +47,10 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 
 .skill-mysql {
   background: var(--mysql-color-background);
+}
+
+.skill-threejs {
+  background: var(--threejs-color-background);
 }
 
 .description-box {
