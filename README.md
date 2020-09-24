@@ -1,7 +1,6 @@
 # Homepage of Dev-song
 
-[GitHub Pages Link](https://dev-song.github.io/3d-home/)
-This homepage has 5 main parts:
+[This homepage](https://dev-song.github.io/3d-home/) has 5 main parts:
 
 - Revolving Objects (3d App)
 - About section
@@ -16,6 +15,8 @@ This homepage is also made of following skills:
 - React
 - Three.js
 - Firebase
+
+---
 
 ### REVOLVING OBJECTS (3D APP)
 
