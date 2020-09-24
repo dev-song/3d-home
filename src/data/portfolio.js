@@ -13,7 +13,7 @@ const PORTFOLIO_ITEMS = [
   new PortfolioItem(
     'Revolving Objects',
     'Webpage',
-    'Homepage displaying revolving objects using React, Three.js',
+    'The web-app displaying revolving objects using React, Three.js combined with floating description boxes',
     ['CSS', 'JavaScript', 'React', 'ThreeJS'],
     'https://dev-song.github.io/3d-home/',
     'https://github.com/dev-song/3d-home'
