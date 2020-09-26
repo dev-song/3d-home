@@ -2,15 +2,21 @@ import React from 'react';
 import { FaLink, FaGithubAlt } from 'react-icons/fa';
 import './Portfolio.css';
 
-function Portfolio({ portfolioInfo }) {
+function Portfolio({ lang, portfolioInfo }) {
   return JSON.parse(portfolioInfo).map((eachInfo, index) => {
-    const { title, subtitle, description, skills, url, github } = eachInfo;
+    const { title, subtitle, description, skills, url, github, titleKR, subtitleKR, descriptionKR } = eachInfo;
 
     return (
       <div key={index} className='portfolio-item'>
-        <h4 className='portfolio-item__title'>{title}</h4>
-        <h5 className='portfolio-item__subtitle'>{subtitle}</h5>
-        <p className='portfolio-item__description'>{description}</p>
+        <h4 className='portfolio-item__title'>
+          {lang === 'ko' ? titleKR : title}
+        </h4>
+        <h5 className='portfolio-item__subtitle'>
+          {lang === 'ko' ? subtitleKR : subtitle}
+        </h5>
+        <p className='portfolio-item__description'>
+          {lang === 'ko' ? descriptionKR : description}
+        </p>
         <div className='portfolio-item__skills'>
           {skills.map((skill, skillIndex) => (
             <div key={skillIndex} className={`portfolio-item__skill skill-${skill.toLowerCase()}`}>

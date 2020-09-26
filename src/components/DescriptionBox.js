@@ -7,17 +7,17 @@ import Portfolio from './Portfolio';
 import Contact from './Contact';
 import Guestbook from './Guestbook';
 
-function DescriptionBox({ content, fadingOut, handleDeleteButton }) {
+function DescriptionBox({ language, content, fadingOut, handleDeleteButton }) {
   const { title, subtitle, body } = content;
 
-  function renderDescriptionBody(title) {
+  function renderDescriptionBody(title, lang) {
     let bodyComponent = body;
     switch (title) {
       case 'About':
-        bodyComponent = <About aboutInfo={body} />
+        bodyComponent = <About lang={lang} aboutInfo={body} />
         break;
       case 'Portfolio':
-        bodyComponent = <Portfolio portfolioInfo={body} />;
+        bodyComponent = <Portfolio lang={lang} portfolioInfo={body} />;
         break;
       case 'Contact':
         bodyComponent = <Contact contactInfo={body} />;
@@ -38,7 +38,7 @@ function DescriptionBox({ content, fadingOut, handleDeleteButton }) {
       <div className='decorative-line' />
       <h3 className='description__subtitle'>{subtitle}</h3>
       <div className='description__body'>
-        {renderDescriptionBody(title)}
+        {renderDescriptionBody(title, language)}
       </div>
       <button type='button' className='description__close-btn' onClick={handleDeleteButton}>
         <FaTimesCircle />

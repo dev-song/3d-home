@@ -22,6 +22,7 @@ class Information extends React.Component {
   constructor() {
     super();
     this.state = {
+      language: 'ko',
       selectedLink: null,
       isFadingOut: false,
       contentByMenu: {
@@ -34,6 +35,7 @@ class Information extends React.Component {
 
     this.handleStateChange = this.handleStateChange.bind(this);
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
+    this.handleLanguageButton = this.handleLanguageButton.bind(this);
   }
 
   handleStateChange(event) {
@@ -65,6 +67,14 @@ class Information extends React.Component {
     }, TRANSITION_TIME + TIME_GAP);
   }
 
+  handleLanguageButton() {
+    if (this.state.language === 'ko') {
+      this.setState({ language: 'en' });
+    } else {
+      this.setState({ language: 'ko' });
+    }
+  }
+
   componentDidMount() {
     const firebaseConfig = {
       apiKey: "AIzaSyBK8K7qYrjLgRHUIBafGSENfMhl0FpdeWE",
@@ -89,12 +99,16 @@ class Information extends React.Component {
           state.selectedLink
             ?
             <DescriptionBox
+              language={state.language}
               content={state.contentByMenu[state.selectedLink]}
               fadingOut={state.isFadingOut}
               handleDeleteButton={this.handleDeleteButton}
             />
             : null
         }
+        <button type='button' className='button__language-change' onClick={this.handleLanguageButton}>
+          {state.language === 'ko' ? '한/영' : 'ENG/KOR'}
+        </button>
       </main>
     )
   }
