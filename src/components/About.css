@@ -8,11 +8,17 @@
   font-size: 2rem;
 }
 
-.about__status,
+.about__status {
+  margin: 0 0 0.5rem;
+
+  font-family: 'Audiowide', 'Sunflower', cursive;
+  font-size: 1.25rem;
+}
+
 .about__intro {
   margin: 0 0 0.5rem;
 
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .about__skills--title {

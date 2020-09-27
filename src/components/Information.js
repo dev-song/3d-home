@@ -107,7 +107,7 @@ class Information extends React.Component {
             : null
         }
         <button type='button' className='button__language-change' onClick={this.handleLanguageButton}>
-          {state.language === 'ko' ? '한/영' : 'ENG/KOR'}
+          {state.language === 'ko' ? 'English' : '한국어'}
         </button>
       </main>
     )
