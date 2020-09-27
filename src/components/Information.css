@@ -1,4 +1,25 @@
 main {
-  position: absolute;
   width: 100%;
+}
+
+.button__language-change {
+  all: unset;
+
+  position: absolute;
+  bottom: 5vh;
+  right: 5vw;
+
+  padding: 0.2rem 0.5rem;
+  border: solid 1px #5caaad;
+  border-radius: 0.5rem;
+  transition: all 0.4s linear;
+  cursor: pointer;
+
+  font-family: 'Iceland', 'Noto Sans KR', cursive;
+  color: #5caaad;
+}
+
+.button__language-change:hover {
+  background: #5caaad;
+  color: white;
 }
