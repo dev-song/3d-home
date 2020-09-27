@@ -65,7 +65,7 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
   box-shadow: 0 0 2rem rgba(255, 255, 255, 0.4);
 
   background: var(--box-color-background);
-  font-family: 'Iceland', cursive;
+  font-family: 'Iceland', 'Noto Sans KR', cursive;
   color: var(--box-color-text);
   font-size: 1.25rem;
   text-align: left;
@@ -111,7 +111,7 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 .description__title {
   padding-bottom: 0.5rem;
 
-  font-family: 'Bungee', cursive;
+  font-family: 'Bungee', 'Noto Sans KR', cursive;
   color: var(--box-color-title);
   text-shadow: 0 0 0.2rem var(--box-color-title);
   font-size: 2rem;
@@ -136,7 +136,7 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 .description__subtitle {
   padding-top: 0.5rem;
 
-  font-family: 'Bungee', cursive;
+  font-family: 'Bungee', 'Noto Sans KR', cursive;
   text-shadow: 0 0 0.1rem var(--box-color-text);
   font-size: 1.25rem;
   line-height: 1.25rem;
