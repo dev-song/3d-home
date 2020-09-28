@@ -11,10 +11,16 @@ function Portfolio({ lang, portfolioInfo }) {
         <h4 className='portfolio-item__title'>
           {lang === 'ko' ? titleKR : title}
         </h4>
-        <h5 className='portfolio-item__subtitle'>
+        <h5
+          className='portfolio-item__subtitle'
+          style={{ fontSize: `${lang === 'ko' ? 1.25 : 1}rem` }}
+        >
           {lang === 'ko' ? subtitleKR : subtitle}
         </h5>
-        <p className='portfolio-item__description'>
+        <p
+          className='portfolio-item__description'
+          style={{ fontSize: `${lang === 'ko' ? 1 : 1.25}rem` }}
+        >
           {lang === 'ko' ? descriptionKR : description}
         </p>
         <div className='portfolio-item__skills'>

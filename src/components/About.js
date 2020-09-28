@@ -7,10 +7,16 @@ function About({ lang, aboutInfo }) {
   return (
     <div className='about'>
       <h4 className='about__username'>{username}</h4>
-      <h5 className='about__status'>
+      <h5
+        className='about__status'
+        style={{ fontSize: `${lang === 'ko' ? 1.25 : 1}rem` }}
+      >
         {lang === 'ko' ? statusKR : status}
       </h5>
-      <p className='about__intro'>
+      <p
+        className='about__intro'
+        style={{ fontSize: `${lang === 'ko' ? 1 : 1.25}rem` }}
+      >
         {lang === 'ko' ? introKR : intro}
       </p>
       <div className='about__skills'>
