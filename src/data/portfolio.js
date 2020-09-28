@@ -23,7 +23,7 @@ const PORTFOLIO_ITEMS = [
     'https://github.com/dev-song/3d-home',
     '공전체',
     '웹페이지',
-    'Three.js를 활용해 우주를 배경으로 공전하는 입체 도형을 구현했습니다. 이를 배경으로 React를 사용한 홈페이지를 구성했습니다. 방명록 게시/조회 기능은 Firebase가 제공하는 데이터베이스와 연계해 구축했습니다.'
+    '현재의 웹페이지입니다. 배경으로 입체적인 우주 공간을 묘사하고자 했습니다. Three.js 라이브러리를 활용하여 3D 공간을 구성하는 핵심 요소들(화면, 시점, 빛, 객체 등)을 구현했습니다. 또한, React를 사용해 홈페이지의 뼈대를 작성했습니다. 다중 언어 지원을 위해 언어 버튼을 추가했으며, 클릭 시 글꼴 및 크기가 변경되도록 UI를 최적화했습니다. 방문자들이 방명록을 남기고 볼 수 있도록, Firebase의 Realtime Database와 연계해 게시/조회 기능을 구축했습니다.'
   ),
   new PortfolioItem(
     'Uprise',
@@ -33,8 +33,8 @@ const PORTFOLIO_ITEMS = [
     'https://dev-song.github.io/uprise/',
     'https://github.com/dev-song/uprise',
     'Uprise',
-    '할일 목록',
-    '웹 기반 할일 목록 앱입니다. localStorage를 활용해 구현했고, 시계 기능과 다중 언어(한/영)를 지원하며, 사용자의 위치를 파악해 해당 장소의 날씨를 보여줍니다. 배경화면은 Unsplash API를 활용해 여행과 관련된 무작위 이미지를 불러옵니다.'
+    '웹 앱',
+    '개인별로 할일 목록을 관리할 수 있는 웹 앱입니다. 온라인 프로그램 Nomad Coder의 강의를 참고하여 제작했습니다. localStorage API를 활용해 개인화를 구현했습니다. 현재 시각 및 사용자 위치에 해당하는 날씨를 표시합니다. 다중 언어(한/영)를 지원합니다. 배경화면은 Unsplash API를 활용해 여행과 관련된 무작위 이미지를 불러오도록 구현했습니다.'
   ),
   new PortfolioItem(
     'Daily Cat',
@@ -44,8 +44,8 @@ const PORTFOLIO_ITEMS = [
     'https://dev-song.github.io/mini-projects/projects/DailyCat/',
     'https://github.com/dev-song/mini-projects/tree/master/projects/DailyCat',
     '오늘의 고양이',
-    '랜덤 고양이 이미지 조회',
-    '무작위로 고양이 종을 선정하고 그 고양이 종의 이미지를 모아서 보여주는 웹 앱입니다. theCatAPI를 활용했습니다.'
+    '웹 앱',
+    '랜덤한 고양이 사진을 보여주는 웹 앱입니다. theCatAPI를 활용해, 접속 시 특정한 종의 고양이에 대한 사진을 모아서 보여줍니다. LazyLoad 기능을 활용해 사진이 많을 경우 순차적으로 로딩하는 기능을 구현했습니다.'
   ),
   new PortfolioItem(
     'Stone',
@@ -56,7 +56,7 @@ const PORTFOLIO_ITEMS = [
     'https://github.com/dev-song/mini-projects/tree/master/projects/cloneWebTemplate/04_Stone',
     'Stone',
     '웹페이지 템플릿',
-    'Webflow의 Stone이란 웹페이지 템플릿을 클론해서 만들었습니다.'
+    'Webflow의 웹페이지 템플릿 Stone을 클론한 웹페이지 템플릿입니다. 이미지 및 문구 Carousel 기능을 JavaScript로 구현했습니다. 모바일 반응형 CSS 스타일링 또한 적용했습니다.'
   ),
   new PortfolioItem(
     'Brav',
@@ -67,7 +67,7 @@ const PORTFOLIO_ITEMS = [
     'https://github.com/dev-song/mini-projects/tree/master/projects/cloneWebTemplate/03_Biznus',
     'Biznus',
     '웹페이지 템플릿',
-    'Webflow의 Stone이란 웹페이지 템플릿을 클론해서 만들었습니다.'
+    'Webflow의 웹페이지 템플릿 Biznus을 클론한 웹페이지 템플릿입니다.'
   ),
   new PortfolioItem(
     'Digital Rain',
