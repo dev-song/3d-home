@@ -17,7 +17,7 @@ const PORTFOLIO_ITEMS = [
   new PortfolioItem(
     'Revolving Objects',
     'Webpage',
-    'The web-app displaying revolving objects using React, Three.js combined with floating description boxes',
+    'The webpage for displaying my introduction and portfolio. This webpage you are watching now is the result of the project. The webpage portrays a 3D space background, and main parts of the 3D space - scene, camera, light, objects, etc - are made with Three.js. A language button is added for multi-language feature of the page, and UI optimization is executed on button clicks, by adjusting font-family and font-size. For visitors who want to leave a message, reading/writing Guestbook is also supported through Firebase Realtime Database.',
     ['CSS', 'JavaScript', 'React', 'ThreeJS'],
     'https://dev-song.github.io/3d-home/',
     'https://github.com/dev-song/3d-home',
@@ -28,7 +28,7 @@ const PORTFOLIO_ITEMS = [
   new PortfolioItem(
     'Uprise',
     'To-do List',
-    'The web to-do list app using localStorage supporting a clock, multi-language (EN/KO), current weather at the user location with a random background image',
+    'The web app for managing personal to-do list. Referred online courses provided by Nomad Coder. The app is personalized using localStorage API, and it shows a clock and the weather of user location. It also supports multi-language(English / Korean), and random backgrounds related with travelling using Unsplash API.',
     ['HTML', 'CSS', 'JavaScript'],
     'https://dev-song.github.io/uprise/',
     'https://github.com/dev-song/uprise',
@@ -39,7 +39,7 @@ const PORTFOLIO_ITEMS = [
   new PortfolioItem(
     'Daily Cat',
     'Random Cat Images Viewer',
-    'The web app displaying images of a random cat breed',
+    'The web app displaying images of a random cat breed. With theCatAPI, the app shows images of a certain cat breed. For the case when there are too many images, LazyLoad is supported to load the image consecutively.',
     ['HTML', 'CSS', 'JavaScript'],
     'https://dev-song.github.io/mini-projects/projects/DailyCat/',
     'https://github.com/dev-song/mini-projects/tree/master/projects/DailyCat',
@@ -50,35 +50,35 @@ const PORTFOLIO_ITEMS = [
   new PortfolioItem(
     'Stone',
     'Webpage Template',
-    'The clone of a webpage template from Webflow, Stone',
+    'The webpage template cloning Stone from Webflow. Image and quote carousel features are supported through JavaScript. The page is also optimized to mobile devices with responsive web design.',
     ['HTML', 'CSS', 'JavaScript'],
     'https://dev-song.github.io/mini-projects/projects/cloneWebTemplate/04_Stone/',
     'https://github.com/dev-song/mini-projects/tree/master/projects/cloneWebTemplate/04_Stone',
     'Stone',
     '웹페이지 템플릿',
-    'Webflow의 웹페이지 템플릿 Stone을 클론한 웹페이지 템플릿입니다. 이미지 및 문구 Carousel 기능을 JavaScript로 구현했습니다. 모바일 반응형 CSS 스타일링 또한 적용했습니다.'
+    'Webflow의 웹페이지 템플릿 Stone을 클론한 웹페이지 템플릿입니다. 이미지 및 문구 Carousel 기능을 JavaScript로 구현했습니다. 반응형 디자인을 통해 모바일 화면에 최적화시켰습니다.'
   ),
   new PortfolioItem(
     'Brav',
     'Webpage Template',
-    'The clone of a webpage template from Webflow, Biznus',
+    'The webpage template cloning Biznus from Webflow. A cart pop-up window is supported through JavaScript. The page is also optimized to mobile devices with responsive web design. CSS pseudo classes like :root, :hover are actively used for visual representation of the page.',
     ['HTML', 'CSS', 'JavaScript'],
     'https://dev-song.github.io/mini-projects/projects/cloneWebTemplate/03_Biznus/',
     'https://github.com/dev-song/mini-projects/tree/master/projects/cloneWebTemplate/03_Biznus',
     'Biznus',
     '웹페이지 템플릿',
-    'Webflow의 웹페이지 템플릿 Biznus을 클론한 웹페이지 템플릿입니다.'
+    'Webflow의 웹페이지 템플릿 Biznus을 클론한 웹페이지 템플릿입니다. 카트 팝업 기능을 JavaScript로 구현했습니다. 반응형 디자인을 통해 모바일 화면에 최적화시켰습니다. :root, :hover 등의 CSS 의사 클래스를 활용해 스타일시트를 작성했습니다.'
   ),
   new PortfolioItem(
     'Digital Rain',
     'Web Screensaver App',
-    'The web screensaver inspired by a movie, Matrix',
+    'The web screensaver inspired by a famous sequence from the movie Matrix. The app is constructed through MVC pattern, and its random letter displaying is made with Math functions and setTimeout/setInterval methods from JavaScript.',
     ['HTML', 'CSS', 'JavaScript'],
     'https://dev-song.github.io/mini-projects/projects/digitalRain/digital_rain.html',
     'https://github.com/dev-song/mini-projects/tree/master/projects/digitalRain',
     'Digital Rain',
     '웹 화면보호기 앱',
-    '영화 매트릭스의 유명한 시퀀스를 따라한 웹 기반 화면보호기입니다.'
+    '영화 매트릭스의 유명한 시퀀스에서 영감을 받아 만든 웹 기반 화면보호기입니다. MVC 패턴을 적용했으며, JavaScript의 Math 함수와 setTimeout/setInterval 메서드를 활용하여 무작위 글자 표시 기능을 구현했습니다.'
   )
 ]
 
