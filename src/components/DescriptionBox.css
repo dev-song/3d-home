@@ -153,9 +153,9 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 
 .description__close-btn {
   all: unset;
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: fixed;
+  top: calc(20vh + 0.3rem);
+  right: calc(5vw + 0.3rem);
 
   padding: 0.1rem;
   transition: all 0.4s linear;
