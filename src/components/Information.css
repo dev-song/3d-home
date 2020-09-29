@@ -23,3 +23,17 @@ main {
   background: #5caaad;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .button__language-change {
+    top: 8.5rem;
+    bottom: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .button__language-change {
+    top: 6rem;
+    bottom: unset;
+  }
+}
