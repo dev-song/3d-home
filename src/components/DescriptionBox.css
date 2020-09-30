@@ -199,9 +199,14 @@ https://graphicriver.net/item/hud-interface-elements-xt2/21617593
 
 @media (max-width: 768px) {
   .description-box {
+    top: 22vh;
     left: 5vw;
     right: 5vw;
-    max-height: calc(80vh - 5vw);
+    max-height: calc(78vh - 5vw);
+  }
+
+  .description__close-btn {
+    top: calc(22vh + 0.3rem);
   }
 }
 
