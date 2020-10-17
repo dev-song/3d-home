@@ -96,12 +96,6 @@ class System3d extends React.Component {
     planetE = SystemLib.createPlanet(geometryE, materialE, scene, 1.5, 'planet', -600, 0, -20);
     targetPlanets = SystemLib.savePlanetMeshes(scene);
 
-    //// Background (Texture source: https://imgur.com/niHC9wI)
-    const bgTexture = new THREE.TextureLoader().load('./textures/stars.jpeg');
-    const bgGeometry = new THREE.SphereBufferGeometry(SPACE_RADIUS, 64, 64);
-    const bgMaterial = new THREE.MeshStandardMaterial({ map: bgTexture, side: THREE.BackSide });
-    bgSpace = SystemLib.createPlanet(bgGeometry, bgMaterial, scene, 1, 'background', 0, 0, 0);
-
     //// Light
     const light = new THREE.PointLight('#ccc', 2, SPACE_RADIUS * 2);
     light.position.set(0, 0, 0);
@@ -111,16 +105,32 @@ class System3d extends React.Component {
     // const gridHelper = new THREE.GridHelper(1000, 20);
     // scene.add(gridHelper);
 
+    //// Background (Texture source: https://imgur.com/niHC9wI)
+    const bgTexture = new THREE.TextureLoader().load(
+      './textures/stars.jpeg',
+      onBgTextureLoad);
+    const bgGeometry = new THREE.SphereBufferGeometry(SPACE_RADIUS, 64, 64);
+    const bgMaterial = new THREE.MeshStandardMaterial({ map: bgTexture, side: THREE.BackSide });
+    bgSpace = SystemLib.createPlanet(bgGeometry, bgMaterial, scene, 1, 'background', 0, 0, 0);
+
+    function onBgTextureLoad() {
+      console.log('Background space is loaded at:', new Date());
+      initSystem();
+    }
+
     //// Animate System
-    animate();
-
-    window.addEventListener('resize', onWindowResize, false);
-    document.addEventListener('mousemove', onDocumentMouseMove, false);
-
     function animate() {
       requestAnimationFrame(animate);
       controls.update();
       render();
+    }
+
+    //// Initiate System
+    function initSystem() {
+      animate();
+
+      window.addEventListener('resize', onWindowResize, false);
+      document.addEventListener('mousemove', onDocumentMouseMove, false);
     }
 
     function render() {
