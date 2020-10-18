@@ -11,11 +11,11 @@ function Contact({ contactInfo }) {
       <p className='contact-info__email'>{email}</p>
       <h4 className='contact-info__blog--label'>Blog</h4>
       <p className='contact-info__blog'>
-        <a href={blogUrl}>{blogName}</a>
+        <a href={blogUrl} target="_blank">{blogName}</a>
       </p>
       <h4 className='contact-info__github--label'>Github</h4>
       <p className='contact-info__github'>
-        <a href={github}><FaGithubAlt /></a>
+        <a href={github} target="_blank"><FaGithubAlt /></a>
       </p>
     </div>
   )
