@@ -31,8 +31,8 @@ function Portfolio({ lang, portfolioInfo }) {
           ))}
         </div>
         <div className='portfolio-item__links'>
-          <a className='portfolio-item__link link-project' href={url} target="_blank"><FaLink /></a>
-          <a className='portfolio-item__link link-github' href={github} target="_blank"><FaGithubAlt /></a>
+          <a className='portfolio-item__link link-project' href={url} target="_blank" rel="noopener noreferrer"><FaLink /></a>
+          <a className='portfolio-item__link link-github' href={github} target="_blank" rel="noopener noreferrer"><FaGithubAlt /></a>
         </div>
       </div>
     )
