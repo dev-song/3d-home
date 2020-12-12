@@ -9,7 +9,7 @@ class Skill {
 const ABOUT_INFO = {
   username: 'dev-song',
   status: 'Web front-end developer',
-  intro: "When working in HR department after graduating Economics major at the university, I was attracted by the vision of software development and started studying. I wish to be steady, improving little by little everyday.",
+  intro: "A new-born web front-end developer, majored in Economics and had worked as a HR assistant. I try to be steady, growing little by little everyday.",
   skills: [
     new Skill('HTML', 70, 'Skilled'),
     new Skill('CSS', 70, 'Skilled'),
@@ -21,7 +21,7 @@ const ABOUT_INFO = {
   ],
 
   statusKR: '웹 프론트엔드 개발자',
-  introKR: "경제학과를 졸업하여 인사 관련 일을 하던 중, 개발자의 길에 매력을 느껴 전업을 위해 공부중입니다. 매일매일 배우며 한 걸음씩 꾸준히 나아가는 개발자가 되고자 합니다.",
+  introKR: "경제학을 전공하고 인사담당자 일을 하다가, 개발의 세계를 접하고 웹 프론트엔드로 새로운 발걸음을 내딛고 있는 주니어 개발자입니다. 매일매일 배우며 한 걸음씩 꾸준히 성장해나가고자 합니다.",
 }
 
 export default ABOUT_INFO;
