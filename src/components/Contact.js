@@ -1,9 +1,9 @@
 import React from 'react';
-import { FaGithubAlt } from 'react-icons/fa';
+import { FaGithubAlt, FaLinkedin } from 'react-icons/fa';
 import './Contact.css';
 
 function Contact({ contactInfo }) {
-  const { email, github, blogName, blogUrl } = JSON.parse(contactInfo);
+  const { email, github, blogName, blogUrl, linkedIn } = JSON.parse(contactInfo);
 
   return (
     <div className='contact-info'>
@@ -16,6 +16,10 @@ function Contact({ contactInfo }) {
       <h4 className='contact-info__github--label'>Github</h4>
       <p className='contact-info__github'>
         <a href={github} target="_blank" rel="noopener noreferrer"><FaGithubAlt /></a>
+      </p>
+      <h4 className='contact-info__linkedin--label'>LinkedIn</h4>
+      <p className='contact-info__linkedin'>
+        <a href={linkedIn} target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
       </p>
     </div>
   )

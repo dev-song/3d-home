@@ -4,7 +4,8 @@
 
 .contact-info__email--label,
 .contact-info__blog--label,
-.contact-info__github--label {
+.contact-info__github--label,
+.contact-info__linkedin--label {
   margin: 0;
 
   font-size: 2rem;
@@ -12,7 +13,8 @@
 
 .contact-info__email,
 .contact-info__blog,
-.contact-info__github {
+.contact-info__github,
+.contact-info__linkedin {
   margin: 0 0 2rem;
   opacity: 0.9;
 
@@ -20,12 +22,13 @@
   color: white;
 }
 
-.contact-info__github {
+.contact-info__linkedin {
   margin: 0;
 }
 
 .contact-info__blog > a,
-.contact-info__github > a {
+.contact-info__github > a,
+.contact-info__linkedin > a {
   all: unset;
   transition: all 0.4s linear;
   cursor: pointer;
@@ -34,7 +37,7 @@
 }
 
 .contact-info__blog > a:hover,
-.contact-info__github > a:hover {
+.contact-info__github > a:hover .contact-info__linkedin > a:hover {
   color: var(--box-color-text);
 }
 
@@ -45,13 +48,15 @@
 
   .contact-info__email--label,
   .contact-info__blog--label,
-  .contact-info__github--label {
+  .contact-info__github--label,
+  .contact-info__linkedin--label {
     font-size: 1.5rem;
   }
 
   .contact-info__email,
   .contact-info__blog,
-  .contact-info__github {
+  .contact-info__github,
+  .contact-info__linkedin {
     font-size: 1.2rem;
   }
 }
