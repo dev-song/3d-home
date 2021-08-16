@@ -26,11 +26,11 @@ class Information extends React.Component {
       selectedLink: null,
       isFadingOut: false,
       contentByMenu: {
-        About: new Content('About', 'Who Am I', JSON.stringify(ABOUT_INFO)),
-        Portfolio: new Content('Portfolio', 'Participated Projects', JSON.stringify(PORTFOLIO_ITEMS)),
-        Contact: new Content('Contact', 'How to Contact Me', JSON.stringify(CONTACT_INFO)),
-        Guestbook: new Content('Guestbook', 'Leave A Message')
-      }
+        About: new Content('About', 'Who Am I', ABOUT_INFO),
+        Portfolio: new Content('Portfolio', 'Participated Projects', PORTFOLIO_ITEMS),
+        Contact: new Content('Contact', 'How to Contact Me', CONTACT_INFO),
+        Guestbook: new Content('Guestbook', 'Leave A Message'),
+      },
     };
 
     this.handleStateChange = this.handleStateChange.bind(this);
@@ -40,8 +40,8 @@ class Information extends React.Component {
 
   handleStateChange(event) {
     const selectedLink = event.target.textContent;
-    const TRANSITION_TIME = 400;  // Should be same as CSS transition time
-    const TIME_GAP = 200;         // Time to initiate displaying next DescriptionBox
+    const TRANSITION_TIME = 400; // Should be same as CSS transition time
+    const TIME_GAP = 200; // Time to initiate displaying next DescriptionBox
 
     if (this.state.selectedLink) {
       if (this.state.selectedLink === selectedLink) return;
@@ -77,14 +77,14 @@ class Information extends React.Component {
 
   componentDidMount() {
     const firebaseConfig = {
-      apiKey: "AIzaSyBK8K7qYrjLgRHUIBafGSENfMhl0FpdeWE",
-      authDomain: "home-guestbook.firebaseapp.com",
-      databaseURL: "https://home-guestbook.firebaseio.com",
-      projectId: "home-guestbook",
-      storageBucket: "home-guestbook.appspot.com",
-      messagingSenderId: "142799144544",
-      appId: "1:142799144544:web:001250f60df6f2b396a505",
-      measurementId: "G-67LGRCK27G"
+      apiKey: 'AIzaSyBK8K7qYrjLgRHUIBafGSENfMhl0FpdeWE',
+      authDomain: 'home-guestbook.firebaseapp.com',
+      databaseURL: 'https://home-guestbook.firebaseio.com',
+      projectId: 'home-guestbook',
+      storageBucket: 'home-guestbook.appspot.com',
+      messagingSenderId: '142799144544',
+      appId: '1:142799144544:web:001250f60df6f2b396a505',
+      measurementId: 'G-67LGRCK27G',
     };
     initializeApp(firebaseConfig);
   }
@@ -95,22 +95,23 @@ class Information extends React.Component {
     return (
       <main role='main'>
         <Navigation handleStateChange={this.handleStateChange} />
-        {
-          state.selectedLink
-            ?
-            <DescriptionBox
-              language={state.language}
-              content={state.contentByMenu[state.selectedLink]}
-              fadingOut={state.isFadingOut}
-              handleDeleteButton={this.handleDeleteButton}
-            />
-            : null
-        }
-        <button type='button' className='button__language-change' onClick={this.handleLanguageButton}>
+        {state.selectedLink && (
+          <DescriptionBox
+            language={state.language}
+            content={state.contentByMenu[state.selectedLink]}
+            fadingOut={state.isFadingOut}
+            handleDeleteButton={this.handleDeleteButton}
+          />
+        )}
+        <button
+          type='button'
+          className='button__language-change'
+          onClick={this.handleLanguageButton}
+        >
           {state.language === 'ko' ? 'English' : '한국어'}
         </button>
       </main>
-    )
+    );
   }
 }
 

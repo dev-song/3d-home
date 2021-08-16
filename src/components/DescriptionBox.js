@@ -11,25 +11,19 @@ function DescriptionBox({ language, content, fadingOut, handleDeleteButton }) {
   const { title, subtitle, body } = content;
 
   function renderDescriptionBody(title, lang) {
-    let bodyComponent = body;
     switch (title) {
       case 'About':
-        bodyComponent = <About lang={lang} aboutInfo={body} />
-        break;
+        return <About lang={lang} aboutInfo={body} />;
       case 'Portfolio':
-        bodyComponent = <Portfolio lang={lang} portfolioInfo={body} />;
-        break;
+        return <Portfolio lang={lang} portfolioInfo={body} />;
       case 'Contact':
-        bodyComponent = <Contact contactInfo={body} />;
-        break;
+        return <Contact contactInfo={body} />;
       case 'Guestbook':
-        bodyComponent = <Guestbook />;
-        break;
+        return <Guestbook />;
       default:
         console.error('Error: No component is loaded');
+        return null;
     }
-
-    return bodyComponent;
   }
 
   return (
@@ -37,14 +31,12 @@ function DescriptionBox({ language, content, fadingOut, handleDeleteButton }) {
       <h2 className='description__title'>{title}</h2>
       <div className='decorative-line' />
       <h3 className='description__subtitle'>{subtitle}</h3>
-      <div className='description__body'>
-        {renderDescriptionBody(title, language)}
-      </div>
+      <div className='description__body'>{renderDescriptionBody(title, language)}</div>
       <button type='button' className='description__close-btn' onClick={handleDeleteButton}>
         <FaTimesCircle />
       </button>
     </article>
-  )
+  );
 }
 
 export default DescriptionBox;

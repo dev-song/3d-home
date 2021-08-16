@@ -2,9 +2,9 @@
  * Reference
  *  Build the Solar System with WebGL & Three.js, by Marshal Murphy (https://medium.com/javascript-in-plain-english/build-the-solar-system-in-the-browser-with-webgl-three-js-5c56b882fc3b)
  *  Three.js Official Documentation (https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene)
- *  Three.js example source code - Interactive Cubes (https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_cubes.html) 
+ *  Three.js example source code - Interactive Cubes (https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_cubes.html)
  *  Pure Three.js + React 16 integration (https://blog.bitsrc.io/starting-with-react-16-and-three-js-in-5-minutes-3079b8829817)
-*/
+ */
 
 import React from 'react';
 import * as THREE from 'three';
@@ -12,7 +12,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import * as SystemLib from './System3dLib';
 
 const SPACE_RADIUS = 1024;
-const INTERSECTED_HEX = 0xAAAAAA;
+const INTERSECTED_HEX = 0xaaaaaa;
 
 class System3d extends React.Component {
   componentDidMount() {
@@ -21,7 +21,7 @@ class System3d extends React.Component {
     let controls;
     let planetA, planetB, planetC, planetD, planetE;
     let bgSpace;
-    const randomSpeed = new Array(5).fill('').map(elm => {
+    const randomSpeed = new Array(5).fill('').map((elm) => {
       const [MIN_SPEED, MAX_SPEED] = [0.1, 0.4];
       let random = Math.random() * MAX_SPEED;
       while (random < MIN_SPEED) {
@@ -32,7 +32,9 @@ class System3d extends React.Component {
     });
 
     let mouse = new THREE.Vector2(),
-      raycaster, targetPlanets, INTERSECTED;
+      raycaster,
+      targetPlanets,
+      INTERSECTED;
 
     function emphasizeIntersected() {
       raycaster.setFromCamera(mouse, camera);
@@ -54,7 +56,12 @@ class System3d extends React.Component {
 
     // Launch System
     //// Camera
-    camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, SPACE_RADIUS * 2);
+    camera = new THREE.PerspectiveCamera(
+      80,
+      window.innerWidth / window.innerHeight,
+      1,
+      SPACE_RADIUS * 2,
+    );
     camera.position.set(SPACE_RADIUS / 4, SPACE_RADIUS / 3, SPACE_RADIUS / 4);
     camera.lookAt(0, 0, 0);
 
@@ -106,9 +113,7 @@ class System3d extends React.Component {
     // scene.add(gridHelper);
 
     //// Background (Texture source: https://imgur.com/niHC9wI)
-    const bgTexture = new THREE.TextureLoader().load(
-      './textures/stars.jpeg',
-      onBgTextureLoad);
+    const bgTexture = new THREE.TextureLoader().load('./textures/stars.jpeg', onBgTextureLoad);
     const bgGeometry = new THREE.SphereBufferGeometry(SPACE_RADIUS, 64, 64);
     const bgMaterial = new THREE.MeshStandardMaterial({ map: bgTexture, side: THREE.BackSide });
     bgSpace = SystemLib.createPlanet(bgGeometry, bgMaterial, scene, 1, 'background', 0, 0, 0);
@@ -157,7 +162,7 @@ class System3d extends React.Component {
       e.preventDefault();
 
       mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
     }
 
     function onWindowResize() {
@@ -171,7 +176,7 @@ class System3d extends React.Component {
     return (
       <div
         className='system__container'
-        ref={ref => (this.mount = ref)}
+        ref={(ref) => (this.mount = ref)}
         style={{ height: window.innerHeight }}
       />
     );

@@ -13,9 +13,7 @@ const TARGET_DB = 'guestbook';
 class Guestbook extends React.Component {
   constructor() {
     super();
-    this.state = {
-      guestbook: null
-    }
+    this.state = { guestbook: null };
 
     this.loadGuestbookData = this.loadGuestbookData.bind(this);
     this.postGuestbookData = this.postGuestbookData.bind(this);
@@ -23,34 +21,41 @@ class Guestbook extends React.Component {
   }
 
   loadGuestbookData(category) {
-    database().ref(category).on('value', (snapshot) => {
-      if (snapshot.val().length < 1) {
-        console.log(`There's no guestbook data.`);
-        return;
-      }
-
-      const guestbook = [];
-      snapshot.forEach(childSnapshot => {
-        const guestbookItem = {
-          key: childSnapshot.key,
-          data: childSnapshot.val()
+    database()
+      .ref(category)
+      .on('value', (snapshot) => {
+        if (snapshot.val().length < 1) {
+          console.log(`There's no guestbook data.`);
+          return;
         }
-        guestbook.push(guestbookItem);
-      });
-      guestbook.sort((a, b) => b.data.regTime - a.data.regTime);
 
-      this.setState({ guestbook: guestbook });
-    });
+        const guestbook = [];
+        snapshot.forEach((childSnapshot) => {
+          const guestbookItem = {
+            key: childSnapshot.key,
+            data: childSnapshot.val(),
+          };
+          guestbook.push(guestbookItem);
+        });
+        guestbook.sort((a, b) => b.data.regTime - a.data.regTime);
+
+        this.setState({ guestbook: guestbook });
+      });
   }
 
   postGuestbookData(data, category) {
-    database().ref(category).push(data)
+    database()
+      .ref(category)
+      .push(data)
       .then(
-        function (snapshot) {   // executed on success
+        function (snapshot) {
+          // executed on success
           console.log(`Data is successfully written`);
-        }, function (error) {   // executed on error
+        },
+        function (error) {
+          // executed on error
           console.error(`Error: ${error}`);
-        }
+        },
       );
   }
 
@@ -61,8 +66,8 @@ class Guestbook extends React.Component {
       regTime: new Date().getTime(),
       name: event.target.querySelector('#name').value,
       password: event.target.querySelector('#password').value,
-      message: event.target.querySelector('#message').value
-    }
+      message: event.target.querySelector('#message').value,
+    };
 
     if (!this.validateSubmit(guestbookData)) {
       alert('You have to enter the form with the proper length of characters');
@@ -97,44 +102,61 @@ class Guestbook extends React.Component {
     return (
       <div className='guestbook'>
         <form className='guestbook-form' onSubmit={this.handleGuestbookSubmit}>
-          <input className='guestbook-form__name' id='name' type='text' placeholder='Name (12 characters max)' minLength='1' maxLength='12' />
-          <input className='guestbook-form__password' id='password' type='password' minLength='4' maxLength='4' placeholder='Password (4 characters)' />
-          <input className='guestbook-form__message' id='message' type='text' placeholder='Message (200 characters max)' minLength='1' maxLength='200' />
+          <input
+            className='guestbook-form__name'
+            id='name'
+            type='text'
+            placeholder='Name (12 characters max)'
+            minLength='1'
+            maxLength='12'
+          />
+          <input
+            className='guestbook-form__password'
+            id='password'
+            type='password'
+            minLength='4'
+            maxLength='4'
+            placeholder='Password (4 characters)'
+          />
+          <input
+            className='guestbook-form__message'
+            id='message'
+            type='text'
+            placeholder='Message (200 characters max)'
+            minLength='1'
+            maxLength='200'
+          />
           <button className='guestbook-form__submit'>Register</button>
         </form>
         <div className='guestbook-list'>
-          {
-            state.guestbook
-              ?
-              state.guestbook.map((guestbookItem, itemIndex) => {
-                const { name, password, message, regTime } = guestbookItem.data;
-                const date = new Date(regTime);
-                const dateStr = `
+          {state.guestbook &&
+            state.guestbook.map((guestbookItem, itemIndex) => {
+              const { name, message, regTime } = guestbookItem.data;
+              const date = new Date(regTime);
+              const dateStr = `
                   ${`${date.getFullYear()}`.substring(2)}
                   /${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}
                   /${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}
                 `;
-                const timeStr = `
+              const timeStr = `
                   ${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()}
                   :${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}
                 `;
 
-                return (
-                  <div className='guestbook-item' key={itemIndex} data-key={guestbookItem.key}>
-                    <p className='guestbook-item__message'>{message}</p>
-                    <p className='guestbook-item__registration-info'>
-                      <span className='registration-info__user'>{name}</span>
-                      <span className='registration-info__time'>{timeStr}</span>
-                      <span className='registration-info__date'>{dateStr}</span>
-                    </p>
-                  </div>
-                )
-              })
-              : null
-          }
+              return (
+                <div className='guestbook-item' key={itemIndex} data-key={guestbookItem.key}>
+                  <p className='guestbook-item__message'>{message}</p>
+                  <p className='guestbook-item__registration-info'>
+                    <span className='registration-info__user'>{name}</span>
+                    <span className='registration-info__time'>{timeStr}</span>
+                    <span className='registration-info__date'>{dateStr}</span>
+                  </p>
+                </div>
+              );
+            })}
         </div>
       </div>
-    )
+    );
   }
 }
 
