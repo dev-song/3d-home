@@ -1,10 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { TextureLoader } from 'three';
 
-const SolarSystem: React.FC = () => {
+type SolarSystemProps = {
+  selectedIndex: number | null;
+};
+
+const SolarSystem: React.FC<SolarSystemProps> = ({ selectedIndex }) => {
   const sunRef = useRef<THREE.Mesh>(null);
   const mercuryRef = useRef<THREE.Mesh>(null);
   const venusRef = useRef<THREE.Mesh>(null);
@@ -25,17 +29,20 @@ const SolarSystem: React.FC = () => {
   const saturnMap = useLoader(TextureLoader, '/src/assets/planet_saturn.jpg');
   const uranusMap = useLoader(TextureLoader, '/src/assets/planet_uranus.jpg');
   const neptuneMap = useLoader(TextureLoader, '/src/assets/planet_neptune.jpg');
-  const celestialBodyRefs = [
-    sunRef,
-    mercuryRef,
-    venusRef,
-    earthRef,
-    marsRef,
-    jupiterRef,
-    saturnRef,
-    uranusRef,
-    neptuneRef,
-  ];
+  const celestialBodyRefs = useMemo(
+    () => [
+      sunRef,
+      mercuryRef,
+      venusRef,
+      earthRef,
+      marsRef,
+      jupiterRef,
+      saturnRef,
+      uranusRef,
+      neptuneRef,
+    ],
+    [],
+  );
   const celestialBodyTextures = [
     sunMap,
     mercuryMap,
@@ -67,7 +74,11 @@ const SolarSystem: React.FC = () => {
   return (
     <>
       {/* helpers */}
-      <OrbitControls />
+      <OrbitControls
+        target={
+          selectedIndex !== null ? celestialBodyRefs[selectedIndex].current?.position : undefined
+        }
+      />
       <axesHelper args={[100]} />
       <gridHelper args={[100, 100]} />
 
