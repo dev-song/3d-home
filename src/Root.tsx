@@ -25,16 +25,7 @@ const Root: React.FC = () => {
           </ul>
         </nav>
         <div className={styles.canvas}>
-          <Canvas
-            camera={{
-              fov: 60,
-              near: 0.1,
-              far: 1000,
-              position: [0, 20, 100],
-              aspect: window.innerWidth / window.innerHeight,
-            }}
-            dpr={window.devicePixelRatio}
-          >
+          <Canvas dpr={window.devicePixelRatio}>
             <SolarSystem />
           </Canvas>
         </div>
