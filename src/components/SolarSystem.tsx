@@ -1,12 +1,20 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 import * as THREE from 'three';
-import { useFrame, useLoader } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { useFrame, useLoader, useThree } from '@react-three/fiber';
+import { OrbitControls, OrbitControlsProps, PerspectiveCamera } from '@react-three/drei';
 import { TextureLoader } from 'three';
+import { ForwardRefComponent } from '@react-three/drei/helpers/ts-utils';
 
 type SolarSystemProps = {
-  selectedIndex: number | null;
+  selectedIndex: number;
 };
+
+type OrbitControlsImpl = typeof OrbitControls extends ForwardRefComponent<
+  OrbitControlsProps,
+  infer R
+>
+  ? R
+  : never;
 
 const SolarSystem: React.FC<SolarSystemProps> = ({ selectedIndex }) => {
   const sunRef = useRef<THREE.Mesh>(null);
@@ -29,20 +37,17 @@ const SolarSystem: React.FC<SolarSystemProps> = ({ selectedIndex }) => {
   const saturnMap = useLoader(TextureLoader, '/src/assets/planet_saturn.jpg');
   const uranusMap = useLoader(TextureLoader, '/src/assets/planet_uranus.jpg');
   const neptuneMap = useLoader(TextureLoader, '/src/assets/planet_neptune.jpg');
-  const celestialBodyRefs = useMemo(
-    () => [
-      sunRef,
-      mercuryRef,
-      venusRef,
-      earthRef,
-      marsRef,
-      jupiterRef,
-      saturnRef,
-      uranusRef,
-      neptuneRef,
-    ],
-    [],
-  );
+  const celestialBodyRefs = [
+    sunRef,
+    mercuryRef,
+    venusRef,
+    earthRef,
+    marsRef,
+    jupiterRef,
+    saturnRef,
+    uranusRef,
+    neptuneRef,
+  ];
   const celestialBodyTextures = [
     sunMap,
     mercuryMap,
@@ -54,6 +59,10 @@ const SolarSystem: React.FC<SolarSystemProps> = ({ selectedIndex }) => {
     uranusMap,
     neptuneMap,
   ];
+
+  const orbitControlsRef = useRef<OrbitControlsImpl>(null);
+
+  const { camera } = useThree();
 
   useFrame((state, delta) => {
     // 자전속도 및 공전속도에 대한 기준 필요 -> 실제대로 1년에 공전 한 바퀴는 너무 느리니까... 1시간에 1바퀴로 한다던가 등
@@ -69,20 +78,27 @@ const SolarSystem: React.FC<SolarSystemProps> = ({ selectedIndex }) => {
         );
       }
     });
+
+    if (orbitControlsRef.current) {
+      orbitControlsRef.current.update();
+    }
+
+    // ! targetPosition 행성별로 다르게; 행성의 크기에 따라 카메라의 거리를 조정해야 함
+    const targetPosition =
+      celestialBodyRefs[selectedIndex].current?.position || new THREE.Vector3(0, 0, 0);
+
+    camera.position.lerp(targetPosition, 0.01);
+    camera.lookAt(targetPosition);
   });
 
   return (
     <>
       {/* helpers */}
-      <OrbitControls
-        target={
-          selectedIndex !== null ? celestialBodyRefs[selectedIndex].current?.position : undefined
-        }
-      />
+      <OrbitControls ref={orbitControlsRef} />
       <axesHelper args={[100]} />
       <gridHelper args={[100, 100]} />
 
-      <PerspectiveCamera makeDefault far={2000000} position={[0, 0, 20000]} />
+      <PerspectiveCamera far={2000000} position={[10000, 10000, 10000]} makeDefault />
       <ambientLight intensity={0.1} />
       <pointLight color={0xffffff} position={[0, 0, 0]} distance={1000000} decay={0.005} />
 

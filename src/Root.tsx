@@ -5,7 +5,7 @@ import SolarSystem from './components/SolarSystem';
 import styles from './styles/root.module.css';
 
 const Root: React.FC = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
     <>
